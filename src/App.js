@@ -1,25 +1,38 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { HashRouter, Switch, Route } from "react-router-dom";
+
+import DefaultLayout from "./containers/DefaultLayout";
+import Login from "./Views/Pages/Login";
+import ForgotPassword from "./Views/Pages/ForgetPass";
+import Register from "./Views/Pages/Register";
 
 function App() {
+  const loading = () => (
+    <div className="ant-divider-with-text-center">Loading....</div>
+  );
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> 13123.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HashRouter>
+      <React.Suspense fallback={loading()}>
+        <>
+          <Switch>
+            <Route exact path="/login" name="Login Page" component={Login} />
+            <Route
+              exact
+              path="/register-page"
+              name="Register Page"
+              component={Register}
+            />
+            <Route
+              exact
+              path="/forgot-password"
+              name="Login Page"
+              component={ForgotPassword}
+            />
+            <Route path="/" name="Home" component={DefaultLayout} />
+          </Switch>
+        </>
+      </React.Suspense>
+    </HashRouter>
   );
 }
 
