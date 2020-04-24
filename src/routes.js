@@ -6,35 +6,29 @@ import DetailUser from "./Views/Pages/DetailUser";
 import Settings from "./Views/Pages/Settings";
 import Users from "./Views/Pages/Users";
 import ChangePass from "./Views/Pages/ChangePass";
-import Login from "./Views/Pages/Login";
+
 // configs
 import { URL_PAGE } from "./configs";
 
-const Routes = [
-  { path: URL_PAGE.USERS, name: "Users", component: Users, exact: true },
-  {
-    path: URL_PAGE.LOGIN,
-    name: "Login",
-    exact: true,
-    component: Login,
-  },
+const routes = [
+  { path: "/", exact: true, name: "Dashboard", component: Dashboard },
   {
     path: URL_PAGE.DASHBOARD,
-    name: "dashboard",
-    exact: true,
+    name: "Dashboard",
     component: Dashboard,
+    exact: true,
   },
   {
-    path: URL_PAGE.CHANGEPASS,
-    exact: true,
+    path: URL_PAGE.CHANGE_PASSWORD,
     name: "Change Password",
     component: ChangePass,
+    exact: true,
   },
   {
-    path: URL_PAGE.INFORMATION,
-    exact: true,
+    path: URL_PAGE.INFO,
     name: "About Project",
     component: Information,
+    exact: true,
   },
   {
     path: URL_PAGE.SETTINGS,
@@ -57,4 +51,4 @@ const Routes = [
     exact: true,
   },
 ];
-export default Routes;
+export default routes;

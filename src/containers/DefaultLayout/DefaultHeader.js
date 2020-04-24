@@ -11,7 +11,7 @@ const DefaultHeader = () => {
         <Link to={URL_PAGE.PROFILE}>Profile</Link>
       </Menu.Item>
       <Menu.Item key="2">
-        <Link to={URL_PAGE.CHANGE}>Change Password</Link>
+        <Link to={URL_PAGE.CHANGE_PASSWORD}>Change Password</Link>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="3">

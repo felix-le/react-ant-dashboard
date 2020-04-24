@@ -9,12 +9,13 @@ import {
 } from "@ant-design/icons";
 
 import { Redirect, Route, Switch, Link, useHistory } from "react-router-dom";
-import Routes from "../../routes";
+import routes from "../../routes";
 
 import { URL_PAGE } from "../../configs";
 
 import DefaultHeader from "./DefaultHeader";
 import DefaultFooter from "./DefaultFooter";
+import DefaultSideBar from "./DefaultSideBar";
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -30,47 +31,7 @@ const DefaultLayout = () => {
   };
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sider collapsible collapsed={state.collapsed} onCollapse={onCollapse}>
-        <div className="logo" style={{ color: "white", textAlign: "center" }}>
-          {" "}
-          Viet Anh le{" "}
-        </div>
-        {/* Tại sao lại có {" "} */}
-        <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-          <Menu.Item key="1">
-            <PieChartOutlined />
-            <span>Dashboard</span>
-          </Menu.Item>
-          <SubMenu
-            key="sub1"
-            title={
-              <span>
-                <UserOutlined />
-                <span>Management</span>
-              </span>
-            }
-          >
-            <Menu.Item key="3">
-              <Link to={`${URL_PAGE.USERS}`}>Users</Link>
-            </Menu.Item>
-          </SubMenu>
-          <SubMenu
-            key="sub2"
-            title={
-              <span>
-                <TeamOutlined />
-                <span>Team</span>
-              </span>
-            }
-          >
-            <Menu.Item key="6">Team 1</Menu.Item>
-            <Menu.Item key="8">Team 2</Menu.Item>
-          </SubMenu>
-          <Menu.Item key="9">
-            <FileOutlined />
-          </Menu.Item>
-        </Menu>
-      </Sider>
+      <DefaultSideBar />
 
       <Layout className="site-layout">
         <Suspense>
@@ -83,17 +44,15 @@ const DefaultLayout = () => {
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
             </Breadcrumb>
             <Switch>
-              {Routes.map((route, idx) => {
-                return route.component ? (
-                  <Route
-                    key={idx}
-                    path={route.path}
-                    exact={route.exact}
-                    name={route.name}
-                    component={route.component}
-                  />
-                ) : null;
-              })}
+              {routes.map((route, idx) => (
+                <Route
+                  key={idx}
+                  path={route.path}
+                  exact={route.exact}
+                  name={route.name}
+                  component={route.component}
+                />
+              ))}
               <Redirect from="/" to="/dashboard" />
             </Switch>
           </Content>

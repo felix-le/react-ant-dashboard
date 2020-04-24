@@ -13,24 +13,22 @@ function App() {
   return (
     <HashRouter>
       <React.Suspense fallback={loading()}>
-        <>
-          <Switch>
-            <Route exact path="/login" name="Login Page" component={Login} />
-            <Route
-              exact
-              path="/register-page"
-              name="Register Page"
-              component={Register}
-            />
-            <Route
-              exact
-              path="/forgot-password"
-              name="Login Page"
-              component={ForgotPassword}
-            />
-            <Route path="/" name="Home" component={DefaultLayout} />
-          </Switch>
-        </>
+        <Switch>
+          <Route exact path="/login" name="Login Page" component={Login} />
+          <Route
+            exact
+            path="/register-page"
+            name="Register Page"
+            component={Register}
+          />
+          <Route
+            exact
+            path="/forgot-password"
+            name="Login Page"
+            component={ForgotPassword}
+          />
+          <Route path="/" name="Home" component={DefaultLayout} />
+        </Switch>
       </React.Suspense>
     </HashRouter>
   );
