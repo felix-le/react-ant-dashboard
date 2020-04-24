@@ -7,4 +7,5 @@ Viet Anh le{" "}
 
 Tại sao lại có hai cái kia?
 
-2. Đéo hiểu sao đéo để mặc định thằng User được. Fuck!
+2. Không tách được thằng sidebar riêng ra.
+3. Không chuyển trang khi bấm vào trang profile - avatar được.

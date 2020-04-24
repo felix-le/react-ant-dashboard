@@ -11,6 +11,7 @@ import Login from "./Views/Pages/Login";
 import { URL_PAGE } from "./configs";
 
 const Routes = [
+  { path: URL_PAGE.USERS, name: "Users", component: Users, exact: true },
   {
     path: URL_PAGE.LOGIN,
     name: "Login",
@@ -41,7 +42,7 @@ const Routes = [
     component: Settings,
     exact: true,
   },
-  { path: URL_PAGE.USERS, name: "Users", component: Users, exact: true },
+
   { path: URL_PAGE.PROFILE, name: "profile", component: Profile, exact: true },
   {
     path: `${URL_PAGE.USERS_DETAIL}/:id`,

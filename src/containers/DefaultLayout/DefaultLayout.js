@@ -28,10 +28,6 @@ const DefaultLayout = () => {
     console.log(collapsed);
     setState({ collapsed });
   };
-  // const _handleClickUsers = () => {
-  //   console.log("1");
-  //   history.push(`${URL_PAGE.USERS}`);
-  // };
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider collapsible collapsed={state.collapsed} onCollapse={onCollapse}>
