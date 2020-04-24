@@ -1,0 +1,130 @@
+{
+  "users": [{
+      "id": 1,
+      "avatar": "https://bit.ly/34SWeiX",
+      "name": "Schwartz",
+      "email": "rob23@gmail.com",
+      "role": "admin",
+      "gender": "male"
+    },
+    {
+      "id": 2,
+      "avatar": "https://bit.ly/34SWeiX",
+      "name": "Ballmer",
+      "email": "lucyb56@gmail.com",
+      "role": "user",
+      "gender": "Unknown"
+    },
+    {
+      "id": 3,
+      "avatar": "https://bit.ly/3bmtp11",
+      "name": "Smith",
+      "email": "annasmith23@gmail.com",
+      "role": "mod",
+      "gender": "female"
+    },
+    {
+      "id": 4,
+      "avatar": "https://bit.ly/3cAN1P7",
+      "name": "Brown",
+      "email": "bobbrown432@yahoo.com",
+      "role": "pet",
+      "gender": "female"
+    },
+    {
+      "id": 5,
+      "avatar": "https://bit.ly/3bmtp11",
+      "name": "Bacon",
+      "email": "rogerbacon12@yahoo.com",
+      "role": "admin",
+      "gender": "Unknown"
+    },
+    {
+      "id": 6,
+      "avatar": "https://bit.ly/34SWeiX",
+      "name": "Schwartz",
+      "email": "rob23@gmail.com",
+      "role": "admin",
+      "gender": "male"
+    },
+    {
+      "id": 7,
+      "avatar": "https://bit.ly/3cAN1P7",
+      "name": "Ballmer",
+      "email": "lucyb56@gmail.com",
+      "role": "user",
+      "gender": "Unknown"
+    },
+    {
+      "id": 8,
+      "avatar": "https://bit.ly/3bmtp11",
+      "name": "Smith",
+      "email": "annasmith23@gmail.com",
+      "role": "mod",
+      "gender": "female"
+    },
+    {
+      "id": 9,
+      "avatar": "https://bit.ly/3cAN1P7",
+      "name": "Brown",
+      "email": "bobbrown432@yahoo.com",
+      "role": "pet",
+      "gender": "female"
+    },
+    {
+      "id": 10,
+      "avatar": "https://bit.ly/3bmtp11",
+      "name": "Bacon",
+      "email": "rogerbacon12@yahoo.com",
+      "role": "admin",
+      "gender": "Unknown"
+    },
+    {
+      "id": 11,
+      "avatar": "https://bit.ly/34SWeiX",
+      "name": "Schwartz",
+      "email": "rob23@gmail.com",
+      "role": "admin",
+      "gender": "male"
+    },
+    {
+      "id": 12,
+      "avatar": "https://bit.ly/3cAN1P7",
+      "name": "Ballmer",
+      "email": "lucyb56@gmail.com",
+      "role": "user",
+      "gender": "Unknown"
+    },
+    {
+      "id": 13,
+      "avatar": "https://bit.ly/3bmtp11",
+      "name": "Smith",
+      "email": "annasmith23@gmail.com",
+      "role": "mod",
+      "gender": "female"
+    },
+    {
+      "id": 14,
+      "avatar": "https://bit.ly/3cAN1P7",
+      "name": "Brown",
+      "email": "bobbrown432@yahoo.com",
+      "role": "pet",
+      "gender": "female"
+    },
+    {
+      "id": 15,
+      "avatar": "https://bit.ly/3bmtp11",
+      "name": "Bacon",
+      "email": "rogerbacon12@yahoo.com",
+      "role": "admin",
+      "gender": "Unknown"
+    }
+  ],
+  "comments": [{
+    "body": "some comment",
+    "postId": 1
+  }],
+  "profile": {
+    "name": "typicode"
+  }
+}

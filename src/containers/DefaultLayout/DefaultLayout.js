@@ -28,10 +28,10 @@ const DefaultLayout = () => {
     console.log(collapsed);
     setState({ collapsed });
   };
-  const _handleClickUsers = () => {
-    // console.log("1");
-    history.push(`${URL_PAGE.USERS}`);
-  };
+  // const _handleClickUsers = () => {
+  //   console.log("1");
+  //   history.push(`${URL_PAGE.USERS}`);
+  // };
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider collapsible collapsed={state.collapsed} onCollapse={onCollapse}>
@@ -55,7 +55,7 @@ const DefaultLayout = () => {
             }
           >
             <Menu.Item key="3">
-              <Link to={`${URL_PAGE.USERS}`}>{URL_PAGE.USERS}</Link>
+              <Link to={`${URL_PAGE.USERS}`}>Users</Link>
             </Menu.Item>
           </SubMenu>
           <SubMenu

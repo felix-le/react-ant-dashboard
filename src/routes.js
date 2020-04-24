@@ -5,15 +5,29 @@ import Information from "./Views/Pages/Infor";
 import DetailUser from "./Views/Pages/DetailUser";
 import Settings from "./Views/Pages/Settings";
 import Users from "./Views/Pages/Users";
+import ChangePass from "./Views/Pages/ChangePass";
+import Login from "./Views/Pages/Login";
 // configs
 import { URL_PAGE } from "./configs";
 
 const Routes = [
   {
+    path: URL_PAGE.LOGIN,
+    name: "Login",
+    exact: true,
+    component: Login,
+  },
+  {
     path: URL_PAGE.DASHBOARD,
     name: "dashboard",
     exact: true,
     component: Dashboard,
+  },
+  {
+    path: URL_PAGE.CHANGEPASS,
+    exact: true,
+    name: "Change Password",
+    component: ChangePass,
   },
   {
     path: URL_PAGE.INFORMATION,
