@@ -11,7 +11,7 @@ import { URL_PAGE } from "./configs";
 const Routes = [
   {
     path: URL_PAGE.DASHBOARD,
-    name: "Dashboard",
+    name: "dashboard",
     exact: true,
     component: Dashboard,
   },

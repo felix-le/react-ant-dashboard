@@ -2,15 +2,16 @@ import React, { useState, Suspense } from "react";
 import "antd/dist/antd.css";
 import { Layout, Menu, Breadcrumb } from "antd";
 import {
-  DesktopOutlined,
   PieChartOutlined,
   FileOutlined,
   TeamOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch, Link, useHistory } from "react-router-dom";
 import Routes from "../../routes";
+
+import { URL_PAGE } from "../../configs";
 
 import DefaultHeader from "./DefaultHeader";
 import DefaultFooter from "./DefaultFooter";
@@ -21,11 +22,16 @@ const { SubMenu } = Menu;
 const DefaultLayout = () => {
   const [state, setState] = useState(false);
 
+  let history = useHistory();
+
   const onCollapse = (collapsed) => {
     console.log(collapsed);
     setState({ collapsed });
   };
-
+  const _handleClickUsers = () => {
+    // console.log("1");
+    history.push(`${URL_PAGE.USERS}`);
+  };
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider collapsible collapsed={state.collapsed} onCollapse={onCollapse}>
@@ -39,22 +45,18 @@ const DefaultLayout = () => {
             <PieChartOutlined />
             <span>Dashboard</span>
           </Menu.Item>
-          <Menu.Item key="2">
-            <DesktopOutlined />
-            <span>Management</span>
-          </Menu.Item>
           <SubMenu
             key="sub1"
             title={
               <span>
                 <UserOutlined />
-                <span>User</span>
+                <span>Management</span>
               </span>
             }
           >
-            <Menu.Item key="3">Tom</Menu.Item>
-            <Menu.Item key="4">Bill</Menu.Item>
-            <Menu.Item key="5">Alex</Menu.Item>
+            <Menu.Item key="3">
+              <Link to={`${URL_PAGE.USERS}`}>{URL_PAGE.USERS}</Link>
+            </Menu.Item>
           </SubMenu>
           <SubMenu
             key="sub2"

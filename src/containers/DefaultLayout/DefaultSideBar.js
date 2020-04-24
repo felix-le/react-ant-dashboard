@@ -28,24 +28,24 @@ const DefaultSideBar = () => {
         <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
           <Menu.Item key="1">
             <PieChartOutlined />
-            <span>Dashboard</span>
+            <span>45456</span>
           </Menu.Item>
-          <Menu.Item key="2">
+          {/* <Menu.Item key="2">
             <DesktopOutlined />
             <span>Management</span>
-          </Menu.Item>
+          </Menu.Item> */}
           <SubMenu
             key="sub1"
             title={
               <span>
                 <UserOutlined />
-                <span>User</span>
+                <span>Management</span>
               </span>
             }
           >
-            <Menu.Item key="3">Tom</Menu.Item>
-            <Menu.Item key="4">Bill</Menu.Item>
-            <Menu.Item key="5">Alex</Menu.Item>
+            <Menu.Item key="3">Member</Menu.Item>
+            {/* <Menu.Item key="4">Bill</Menu.Item> */}
+            {/* <Menu.Item key="5">Alex</Menu.Item> */}
           </SubMenu>
           <SubMenu
             key="sub2"
