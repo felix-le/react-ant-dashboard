@@ -19,10 +19,9 @@ const routes = [
     exact: true,
   },
   {
-    path: URL_PAGE.Users,
+    path: URL_PAGE.USERS,
     name: "Users",
     component: Users,
-    exact: true,
   },
   {
     path: URL_PAGE.CHANGE_PASSWORD,
