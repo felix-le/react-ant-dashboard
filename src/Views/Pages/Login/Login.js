@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Checkbox, Layout } from "antd";
 import { connect } from "react-redux";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useHistory,
+  useLocation,
+} from "react-router-dom";
 
 import { setUser } from "../../../redux/actions";
 const layout = {
@@ -23,9 +32,11 @@ const Login = ({ setUser }) => {
     userInput: "",
     UserPassword: "",
   });
+  let history = useHistory();
 
   const onFinish = (values) => {
     setUser(account.userInput, account.UserPassword);
+    history.push("/");
   };
 
   const onFinishFailed = (errorInfo) => {
