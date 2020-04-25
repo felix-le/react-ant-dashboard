@@ -1,40 +1,30 @@
-import React, { useState, useRef } from "react";
-import { Spin, Button, Table, Input } from "antd";
+import React, { useState, useRef, useEffect } from "react";
+import { Spin, Radio, Button, Table, Input } from "antd";
 // import { connect } from "react-redux";
 import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
+import axios from "axios";
+// import { fectchUsers } from "./redux/actions";
 
-const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-  },
-  {
-    key: "2",
-    name: "Joe Black",
-    age: 42,
-    address: "London No. 1 Lake Park",
-  },
-  {
-    key: "3",
-    name: "Jim Green",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-  },
-  {
-    key: "4",
-    name: "Jim Red",
-    age: 32,
-    address: "London No. 2 Lake Park",
-  },
-];
+// import { fectchUsers } from "./redux/actions";
 
 const Users = () => {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
+  const [data, setData] = useState([]);
   let searchInput = useRef(null);
+
+  useEffect(() => {
+    const fectchUsers = async () => {
+      const res = await axios.get(
+        "https://randomuser.me/api/?page=1&results=5"
+      );
+      console.log(res.data.results);
+      setData(res.data.results);
+    };
+    fectchUsers();
+  }, []);
+  // console.log(data);
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -128,7 +118,24 @@ const Users = () => {
       title: "Address",
       dataIndex: "address",
       key: "address",
+      width: "20%",
       ...getColumnSearchProps("address"),
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (text, record) => {
+        console.log("OUTPUT: Users -> text, record", text, record);
+        return (
+          <span>
+            <Button type="primary">View</Button>
+            <span style={{ margin: "20px" }}></span>
+            <Button type="primary" danger>
+              Delete
+            </Button>
+          </span>
+        );
+      },
     },
   ];
 

@@ -23,3 +23,22 @@ users trên nab > data table
 private router or protected router react
 
 - Login > cho phép vô dashboard --> Không gõ trực tiếp về trang login mà luôn đá về dashboard
+
+# 25/4
+
+- add nut view , delete
+
+- Register page - dang ky xong > save to local storage
+
+- Login - check user vs local storage > login ?
+
+- Change pass page for user.
+
+- show profile user = json-server
+
+- paging passion
+
+API for USERS:
+https://randomuser.me/api/?page=1&results=5
+
+danf trang ra.
