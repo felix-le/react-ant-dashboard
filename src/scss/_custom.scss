@@ -11,3 +11,14 @@
 [data-theme="dark"] .site-layout .site-layout-background {
   background: #141414;
 }
+
+.login-page-wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form {
+  min-width: 500px;
+}

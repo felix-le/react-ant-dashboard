@@ -129,6 +129,7 @@ class Users extends React.Component {
         width: "20%",
         ...this.getColumnSearchProps("age"),
       },
+
       {
         title: "Address",
         dataIndex: "address",
