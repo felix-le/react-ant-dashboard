@@ -6,14 +6,31 @@ const initialState = {
   loading: false,
   error: false,
   keywords: "",
+  users: {},
 };
+
+let newObjectUser = {};
 
 const reducers = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER: {
+      const { id, username, password } = action.payload;
+      if (!newObjectUser[id]) {
+        newObjectUser[id] = {
+          id,
+          username,
+          password,
+        };
+      } else {
+        newObjectUser = {
+          ...newObjectUser[id],
+          ...action.payload,
+        };
+      }
+
       return {
         ...state,
-        data: [...state.data, action.payload],
+        users: newObjectUser,
       };
     }
     //------------------------------------------------------------

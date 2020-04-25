@@ -29,14 +29,15 @@ const tailLayout = {
 
 const Login = ({ setUser }) => {
   const [account, setAccount] = useState({
-    userInput: "",
-    UserPassword: "",
+    inputUser: "",
+    inputPass: "",
   });
   let history = useHistory();
 
   const onFinish = (values) => {
-    setUser(account.userInput, account.UserPassword);
-    history.push("/");
+    console.log(values);
+    setUser(values.username, values.password);
+    // history.push("/");
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -47,7 +48,6 @@ const Login = ({ setUser }) => {
     const { name, value } = evt.target;
     setAccount({ ...account, [name]: value });
   };
-  // console.log(account);
 
   return (
     <Layout className="login-page-wrapper">
@@ -70,8 +70,9 @@ const Login = ({ setUser }) => {
               message: "Please input your username!",
             },
           ]}
+          onChange={(evt) => _handleOnChange(evt)}
         >
-          <Input name="userInput" onChange={(evt) => _handleOnChange(evt)} />
+          <Input name="inputUser" />
         </Form.Item>
 
         <Form.Item
@@ -83,8 +84,9 @@ const Login = ({ setUser }) => {
               message: "Please input your password!",
             },
           ]}
+          onChange={(evt) => _handleOnChange(evt)}
         >
-          <Input name="UserPassword" onChange={(evt) => _handleOnChange(evt)} />
+          <Input.Password name="inputPass" />
         </Form.Item>
         <Form.Item {...tailLayout} name="remember" valuePropName="checked">
           <Checkbox>Remember me</Checkbox>

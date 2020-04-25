@@ -9,13 +9,11 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { stores, persistor } from "./stores";
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={stores}>
-      <PersistGate loading={null} persistor={persistor}>
-        <App />
-      </PersistGate>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={stores}>
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
+  </Provider>,
   document.getElementById("root")
 );
 // If you want your app to work offline and load faster, you can change

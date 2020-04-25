@@ -15,7 +15,7 @@ const DefaultHeader = () => {
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="3">
-        <Link to={URL_PAGE.LOGIN}>Logout</Link>
+        <Link to={URL_PAGE.CHANGE_PASSWORD}>Logout</Link>
       </Menu.Item>
     </Menu>
   );
@@ -27,16 +27,11 @@ const DefaultHeader = () => {
         style={{ padding: 0, textAlign: "right" }}
       >
         <Dropdown overlay={menu} trigger={["click"]}>
-          <Link
-            className="ant-dropdown-link"
-            onClick={(e) => e.preventDefault()}
-          >
-            <Avatar
-              size="large"
-              src="https://bit.ly/34SWeiX"
-              style={{ right: "20px" }}
-            />
-          </Link>
+          <Avatar
+            size="large"
+            src="https://bit.ly/34SWeiX"
+            style={{ right: "20px" }}
+          />
         </Dropdown>
       </div>
     </Header>

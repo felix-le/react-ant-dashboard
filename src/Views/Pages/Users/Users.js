@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Spin, Button, Table, Input } from "antd";
 // import { connect } from "react-redux";
 import Highlighter from "react-highlight-words";
@@ -31,13 +31,23 @@ const data = [
   },
 ];
 
-class Users extends React.Component {
-  state = {
-    searchText: "",
-    searchedColumn: "",
+const Users = () => {
+  const [searchText, setSearchText] = useState("");
+  const [searchedColumn, setSearchedColumn] = useState("");
+  let searchInput = useRef(null);
+
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
   };
 
-  getColumnSearchProps = (dataIndex) => ({
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText("");
+  };
+
+  const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({
       setSelectedKeys,
       selectedKeys,
@@ -47,21 +57,19 @@ class Users extends React.Component {
       <div style={{ padding: 8 }}>
         <Input
           ref={(node) => {
-            this.searchInput = node;
+            searchInput = node;
           }}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
           onChange={(e) =>
             setSelectedKeys(e.target.value ? [e.target.value] : [])
           }
-          onPressEnter={() =>
-            this.handleSearch(selectedKeys, confirm, dataIndex)
-          }
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
           style={{ width: 188, marginBottom: 8, display: "block" }}
         />
         <Button
           type="primary"
-          onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+          onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
           icon={<SearchOutlined />}
           size="small"
           style={{ width: 90, marginRight: 8 }}
@@ -69,7 +77,7 @@ class Users extends React.Component {
           Search
         </Button>
         <Button
-          onClick={() => this.handleReset(clearFilters)}
+          onClick={() => handleReset(clearFilters)}
           size="small"
           style={{ width: 90 }}
         >
@@ -84,14 +92,14 @@ class Users extends React.Component {
       record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
     onFilterDropdownVisibleChange: (visible) => {
       if (visible) {
-        setTimeout(() => this.searchInput.select());
+        setTimeout(() => searchInput.select());
       }
     },
     render: (text) =>
-      this.state.searchedColumn === dataIndex ? (
+      searchedColumn === dataIndex ? (
         <Highlighter
           highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
-          searchWords={[this.state.searchText]}
+          searchWords={[searchText]}
           autoEscape
           textToHighlight={text.toString()}
         />
@@ -100,45 +108,31 @@ class Users extends React.Component {
       ),
   });
 
-  handleSearch = (selectedKeys, confirm, dataIndex) => {
-    confirm();
-    this.setState({
-      searchText: selectedKeys[0],
-      searchedColumn: dataIndex,
-    });
-  };
+  const columns = [
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+      width: "30%",
+      ...getColumnSearchProps("name"),
+    },
+    {
+      title: "Age",
+      dataIndex: "age",
+      key: "age",
+      width: "20%",
+      ...getColumnSearchProps("age"),
+    },
 
-  handleReset = (clearFilters) => {
-    clearFilters();
-    this.setState({ searchText: "" });
-  };
+    {
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
+      ...getColumnSearchProps("address"),
+    },
+  ];
 
-  render() {
-    const columns = [
-      {
-        title: "Name",
-        dataIndex: "name",
-        key: "name",
-        width: "30%",
-        ...this.getColumnSearchProps("name"),
-      },
-      {
-        title: "Age",
-        dataIndex: "age",
-        key: "age",
-        width: "20%",
-        ...this.getColumnSearchProps("age"),
-      },
-
-      {
-        title: "Address",
-        dataIndex: "address",
-        key: "address",
-        ...this.getColumnSearchProps("address"),
-      },
-    ];
-    return <Table columns={columns} dataSource={data} />;
-  }
-}
+  return <Table columns={columns} dataSource={data} />;
+};
 
 export default Users;
