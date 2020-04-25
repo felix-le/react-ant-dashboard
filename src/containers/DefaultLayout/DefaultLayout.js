@@ -1,34 +1,17 @@
-import React, { useState, Suspense } from "react";
+import React, { Suspense } from "react";
 import "antd/dist/antd.css";
-import { Layout, Menu, Breadcrumb } from "antd";
-import {
-  PieChartOutlined,
-  FileOutlined,
-  TeamOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { Layout, Breadcrumb } from "antd";
 
-import { Redirect, Route, Switch, Link, useHistory } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import routes from "../../routes";
-
-import { URL_PAGE } from "../../configs";
 
 import DefaultHeader from "./DefaultHeader";
 import DefaultFooter from "./DefaultFooter";
 import DefaultSideBar from "./DefaultSideBar";
 
-const { Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
+const { Content, Footer } = Layout;
 
 const DefaultLayout = () => {
-  const [state, setState] = useState(false);
-
-  let history = useHistory();
-
-  const onCollapse = (collapsed) => {
-    console.log(collapsed);
-    setState({ collapsed });
-  };
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <DefaultSideBar />
@@ -40,8 +23,8 @@ const DefaultLayout = () => {
         <Suspense>
           <Content style={{ margin: "0 16px" }}>
             <Breadcrumb style={{ margin: "16px 0" }}>
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
+              <Breadcrumb.Item>Name-Page</Breadcrumb.Item>
+              <Breadcrumb.Item>Child-Page</Breadcrumb.Item>
             </Breadcrumb>
             <Switch>
               {routes.map((route, idx) => (

@@ -66,4 +66,4 @@ const DefaultSideBar = () => {
   );
 };
 
-// export default DefaultSideBar;
+export default DefaultSideBar;
