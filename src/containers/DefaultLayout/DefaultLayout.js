@@ -25,28 +25,30 @@ const DefaultLayout = () => {
               <Breadcrumb.Item>Name-Page</Breadcrumb.Item>
               <Breadcrumb.Item>Child-Page</Breadcrumb.Item>
             </Breadcrumb>
-            <Switch>
-              {routes.map((route, idx) => {
-                return route.name === "profile" ? (
-                  <Route
-                    key={idx}
-                    path={route.path}
-                    exact={route.exact}
-                    name={route.name}
-                    component={route.component}
-                  />
-                ) : (
-                  <Route
-                    key={idx}
-                    path={route.path}
-                    exact={route.exact}
-                    name={route.name}
-                    component={route.component}
-                  />
-                );
-              })}
-              <Redirect from="/" to="/dashboard" />
-            </Switch>
+            <div className="container">
+              <Switch>
+                {routes.map((route, idx) => {
+                  return route.name === "profile" ? (
+                    <Route
+                      key={idx}
+                      path={route.path}
+                      exact={route.exact}
+                      name={route.name}
+                      component={route.component}
+                    />
+                  ) : (
+                    <Route
+                      key={idx}
+                      path={route.path}
+                      exact={route.exact}
+                      name={route.name}
+                      component={route.component}
+                    />
+                  );
+                })}
+                <Redirect from="/" to="/dashboard" />
+              </Switch>
+            </div>
           </Content>
         </Suspense>
         <Suspense>

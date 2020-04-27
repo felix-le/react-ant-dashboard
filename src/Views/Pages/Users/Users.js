@@ -1,145 +1,97 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Spin, Radio, Button, Table, Input } from "antd";
-// import { connect } from "react-redux";
-import Highlighter from "react-highlight-words";
-import { SearchOutlined } from "@ant-design/icons";
+import React, { useState, useEffect } from "react";
+import "antd/dist/antd.css";
 import axios from "axios";
-// import { fectchUsers } from "./redux/actions";
+import { Table } from "antd";
 
-// import { fectchUsers } from "./redux/actions";
+const columns = [
+  {
+    title: "No.",
+    dataIndex: "number",
+    key: "number",
+    width: 50,
+    fixed: "left",
+    key: "0",
+  },
+  {
+    title: "Full Name",
+    width: 100,
+    dataIndex: "name",
+    key: "5",
+  },
+  {
+    title: "gender",
+    width: 100,
+    dataIndex: "gender",
+    key: "gender",
+  },
+  {
+    title: "Column 1",
+    dataIndex: "address",
+    key: "1",
+    width: 150,
+  },
+  {
+    title: "Column 2",
+    dataIndex: "address",
+    key: "2",
+    width: 150,
+  },
+  {
+    title: "Column 3",
+    dataIndex: "address",
+    key: "3",
+    width: 150,
+  },
+
+  {
+    title: "Action",
+    key: "operation",
+    fixed: "right",
+    width: 100,
+    render: () => <a>action</a>,
+  },
+];
 
 const Users = () => {
-  const [searchText, setSearchText] = useState("");
-  const [searchedColumn, setSearchedColumn] = useState("");
-  const [data, setData] = useState([]);
-  let searchInput = useRef(null);
-
+  const [dataApi, setDataApi] = useState([]);
   useEffect(() => {
     const fectchUsers = async () => {
       const res = await axios.get(
-        "https://randomuser.me/api/?page=1&results=5"
+        "https://randomuser.me/api/?page=1&results=10"
       );
-      console.log(res.data.results);
-      setData(res.data.results);
+      setDataApi(res.data.results);
     };
     fectchUsers();
   }, []);
-  // console.log(data);
+  console.log("dataApi", dataApi);
 
-  const handleSearch = (selectedKeys, confirm, dataIndex) => {
-    confirm();
-    setSearchText(selectedKeys[0]);
-    setSearchedColumn(dataIndex);
-  };
-
-  const handleReset = (clearFilters) => {
-    clearFilters();
-    setSearchText("");
-  };
-
-  const getColumnSearchProps = (dataIndex) => ({
-    filterDropdown: ({
-      setSelectedKeys,
-      selectedKeys,
-      confirm,
-      clearFilters,
-    }) => (
-      <div style={{ padding: 8 }}>
-        <Input
-          ref={(node) => {
-            searchInput = node;
-          }}
-          placeholder={`Search ${dataIndex}`}
-          value={selectedKeys[0]}
-          onChange={(e) =>
-            setSelectedKeys(e.target.value ? [e.target.value] : [])
-          }
-          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-          style={{ width: 188, marginBottom: 8, display: "block" }}
-        />
-        <Button
-          type="primary"
-          onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-          icon={<SearchOutlined />}
-          size="small"
-          style={{ width: 90, marginRight: 8 }}
-        >
-          Search
-        </Button>
-        <Button
-          onClick={() => handleReset(clearFilters)}
-          size="small"
-          style={{ width: 90 }}
-        >
-          Reset
-        </Button>
-      </div>
-    ),
-    filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-    ),
-    onFilter: (value, record) =>
-      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
-    onFilterDropdownVisibleChange: (visible) => {
-      if (visible) {
-        setTimeout(() => searchInput.select());
-      }
-    },
-    render: (text) =>
-      searchedColumn === dataIndex ? (
-        <Highlighter
-          highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
-          searchWords={[searchText]}
-          autoEscape
-          textToHighlight={text.toString()}
-        />
-      ) : (
-        text
-      ),
-  });
-
-  const columns = [
-    {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-      width: "30%",
-      ...getColumnSearchProps("name"),
-    },
-    {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
-      width: "20%",
-      ...getColumnSearchProps("age"),
-    },
-
-    {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
-      width: "20%",
-      ...getColumnSearchProps("address"),
-    },
-    {
-      title: "Action",
-      key: "action",
-      render: (text, record) => {
-        console.log("OUTPUT: Users -> text, record", text, record);
-        return (
-          <span>
-            <Button type="primary">View</Button>
-            <span style={{ margin: "20px" }}></span>
-            <Button type="primary" danger>
-              Delete
-            </Button>
-          </span>
-        );
-      },
-    },
-  ];
-
-  return <Table columns={columns} dataSource={data} />;
+  const data = [...dataApi];
+  if (data.length > 0) {
+    data.map((item, idx) => {
+      console.log(item);
+      return (
+        <div key={idx}>
+          number: {idx}
+          name: item.name.first
+        </div>
+      );
+    });
+    // for (let i = 0; i < 100; i++) {
+    //   data.push({
+    //     key: `data[i].id.name`,
+    //     number: `${i}`,
+    //     name: data[i].name,
+    //     gender: data[i].gender,
+    //     address: `London Park no. ${i}`,
+    //   });
+    // }
+  }
+  return (
+    <div>
+      <Table columns={columns} dataSource={data} scroll={{ x: 1500, y: 300 }} />
+      ,
+    </div>
+  );
 };
 
 export default Users;

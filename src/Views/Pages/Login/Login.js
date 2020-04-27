@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Form, Input, Button, Checkbox, Layout } from "antd";
 import { connect } from "react-redux";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useHistory,
-  useLocation,
+  // Router,
+  // Switch,
+  // Route,
+  // Link,
+  // Redirect,
+  BrowserRouter as useHistory,
+  // useLocation,
 } from "react-router-dom";
 
 import { setUser } from "../../../redux/actions";
@@ -37,7 +37,7 @@ const Login = ({ setUser }) => {
   const onFinish = (values) => {
     console.log(values);
     setUser(values.username, values.password);
-    // history.push("/");
+    history.push("/");
   };
 
   const onFinishFailed = (errorInfo) => {
