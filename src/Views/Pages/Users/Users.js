@@ -7,24 +7,70 @@ const { confirm } = Modal;
 
 const Users = () => {
   const [data, setData] = useState([]);
+  const [selectedRowKeys, setSelectedRowKeys] = useState("");
+  const [selectedRows, setSelectedRows] = useState("");
+  const [recordItem, setRecordItem] = useState("");
 
-  const _handleDelete = (id) => {
+  // rowSelection objects indicates the need for row selection
+  const rowSelection = {
+    onChange: (selectedRowKeys, selectedRows) => {
+      setSelectedRowKeys(selectedRowKeys);
+      setSelectedRows(selectedRows);
+    },
+    onSelect: (record, selected, selectedRows) => {
+      setRecordItem(record);
+      // console.log(record, selected, selectedRows);
+    },
+    onSelectAll: (selected, selectedRows, changeRows) => {
+      console.log(selected, selectedRows, changeRows);
+    },
+  };
+
+  const _handleDeleteAll = (id) => {
     confirm({
-      title: "Are you sure delete this task?",
+      title: "Are you sure delete All tasks?",
       icon: <ExclamationCircleOutlined />,
       content: "Some descriptions",
       okText: "Yes",
       okType: "danger",
       cancelText: "No",
       onOk() {
-        console.log("OK", id);
+        console.log(...selectedRowKeys);
+        const dataSource = [...data];
+        dataSource.splice(selectedRows, selectedRows.length);
+        setData(dataSource);
+        setSelectedRowKeys([]);
       },
       onCancel() {
         console.log("Cancel");
       },
     });
   };
+  if (Object.keys(recordItem).length > 0) {
+    console.log(recordItem.login.uuid);
+  } else {
+  }
 
+  const handleDelete = () => {
+    confirm({
+      title: "Are you sure delete the task?",
+      icon: <ExclamationCircleOutlined />,
+      content: "Some descriptions",
+      okText: "Yes",
+      okType: "danger",
+      cancelText: "No",
+      onOk() {
+        const deleteArr = data.filter(
+          (item) => item.login.uuid !== recordItem.login.uuid
+        );
+        setData(deleteArr);
+      },
+      onCancel() {
+        console.log("Cancel");
+      },
+    });
+  };
+  // todos: state.todos.filter(item => item.id !== action.payload.id)
   useEffect(() => {
     const fectchUsers = async () => {
       const res = await axios.get(
@@ -79,14 +125,7 @@ const Users = () => {
             <Button type="primary" className="btn-success">
               View
             </Button>
-            <Button
-              type="primary"
-              danger
-              onClick={(id) => {
-                // e.stopPropagation();
-                _handleDelete(id);
-              }}
-            >
+            <Button type="primary" danger onClick={handleDelete}>
               Delete
             </Button>
           </div>
@@ -96,13 +135,26 @@ const Users = () => {
   ];
 
   return (
-    <Table
-      columns={columns}
-      dataSource={data}
-      rowKey={(record) => record.login.uuid}
-      scroll={{ x: 1500, y: 300 }}
-      pagination={{ pageSize: 5 }}
-    />
+    <>
+      <Button
+        type="primary"
+        danger
+        onClick={() => {
+          // e.stopPropagation();
+          _handleDeleteAll();
+        }}
+      >
+        Delete Seleted Item
+      </Button>
+      <Table
+        columns={columns}
+        dataSource={data}
+        rowKey={(record) => record.login.uuid}
+        scroll={{ x: 1500, y: 300 }}
+        pagination={{ pageSize: 5 }}
+        rowSelection={rowSelection}
+      />
+    </>
   );
 };
 
