@@ -1,96 +1,108 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "antd/dist/antd.css";
+import { Table, Button, Modal } from "antd";
 import axios from "axios";
-import { Table } from "antd";
-
-const columns = [
-  {
-    title: "No.",
-    dataIndex: "number",
-    key: "number",
-    width: 50,
-    fixed: "left",
-    key: "0",
-  },
-  {
-    title: "Full Name",
-    width: 100,
-    dataIndex: "name",
-    key: "5",
-  },
-  {
-    title: "gender",
-    width: 100,
-    dataIndex: "gender",
-    key: "gender",
-  },
-  {
-    title: "Column 1",
-    dataIndex: "address",
-    key: "1",
-    width: 150,
-  },
-  {
-    title: "Column 2",
-    dataIndex: "address",
-    key: "2",
-    width: 150,
-  },
-  {
-    title: "Column 3",
-    dataIndex: "address",
-    key: "3",
-    width: 150,
-  },
-
-  {
-    title: "Action",
-    key: "operation",
-    fixed: "right",
-    width: 100,
-    render: () => <a>action</a>,
-  },
-];
+import { ExclamationCircleOutlined } from "@ant-design/icons";
+const { confirm } = Modal;
 
 const Users = () => {
-  const [dataApi, setDataApi] = useState([]);
+  const [data, setData] = useState([]);
+
+  const _handleDelete = (id) => {
+    confirm({
+      title: "Are you sure delete this task?",
+      icon: <ExclamationCircleOutlined />,
+      content: "Some descriptions",
+      okText: "Yes",
+      okType: "danger",
+      cancelText: "No",
+      onOk() {
+        console.log("OK", id);
+      },
+      onCancel() {
+        console.log("Cancel");
+      },
+    });
+  };
+
   useEffect(() => {
     const fectchUsers = async () => {
       const res = await axios.get(
-        "https://randomuser.me/api/?page=1&results=10"
+        "https://randomuser.me/api/?page=1&results=100"
       );
-      setDataApi(res.data.results);
+      console.log(res.data.results);
+      setData(res.data.results);
     };
     fectchUsers();
   }, []);
-  console.log("dataApi", dataApi);
 
-  const data = [...dataApi];
-  if (data.length > 0) {
-    data.map((item, idx) => {
-      console.log(item);
-      return (
-        <div key={idx}>
-          number: {idx}
-          name: item.name.first
-        </div>
-      );
-    });
-    // for (let i = 0; i < 100; i++) {
-    //   data.push({
-    //     key: `data[i].id.name`,
-    //     number: `${i}`,
-    //     name: data[i].name,
-    //     gender: data[i].gender,
-    //     address: `London Park no. ${i}`,
-    //   });
-    // }
-  }
+  const columns = [
+    {
+      title: "Avatar",
+      dataIndex: "picture",
+      render: (picture) => (
+        <img src={picture.thumbnail} title="Avatar" alt="Avatar" />
+      ),
+      width: "5%",
+      fixed: "left",
+    },
+    {
+      title: "Full Name",
+      width: "15%",
+      dataIndex: "name",
+      key: "name",
+      render: (name) => `${name.title}. ${name.first} ${name.last}`,
+      fixed: "left",
+    },
+    {
+      title: "Email",
+      width: "15%",
+      dataIndex: "email",
+      key: "email",
+    },
+    {
+      title: "gender",
+      dataIndex: "gender",
+      key: "1",
+      width: "10",
+    },
+
+    {
+      title: "Action",
+      key: "operation",
+      fixed: "right",
+      // width: "30%",
+      render: () => {
+        return (
+          <div className="table__action">
+            <Button type="primary">Update</Button>
+            <Button type="primary" className="btn-success">
+              View
+            </Button>
+            <Button
+              type="primary"
+              danger
+              onClick={(id) => {
+                // e.stopPropagation();
+                _handleDelete(id);
+              }}
+            >
+              Delete
+            </Button>
+          </div>
+        );
+      },
+    },
+  ];
+
   return (
-    <div>
-      <Table columns={columns} dataSource={data} scroll={{ x: 1500, y: 300 }} />
-      ,
-    </div>
+    <Table
+      columns={columns}
+      dataSource={data}
+      rowKey={(record) => record.login.uuid}
+      scroll={{ x: 1500, y: 300 }}
+      pagination={{ pageSize: 5 }}
+    />
   );
 };
 
