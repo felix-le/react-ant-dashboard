@@ -44,7 +44,7 @@ const routes = [
 
   { path: URL_PAGE.PROFILE, name: "profile", component: Profile, exact: true },
   {
-    path: `${URL_PAGE.USERS_DETAIL}/:id`,
+    path: URL_PAGE.USERS_DETAIL,
     name: "Detail User",
     component: DetailUser,
     exact: true,

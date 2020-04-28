@@ -110,7 +110,6 @@ const mapStateToProps = (state) => {
     data,
   };
 };
-// Đéo hiểu sao lại có thằng email xuất hiệntrong state
 const mapDispatchToProps = {
   setUser,
 };

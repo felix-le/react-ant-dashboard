@@ -3,6 +3,8 @@ import "antd/dist/antd.css";
 import { Table, Button, Modal } from "antd";
 import axios from "axios";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
+import { useHistory } from "react-router-dom";
+import URL_PAGE from "../../../configs/url";
 const { confirm } = Modal;
 
 const Users = () => {
@@ -10,6 +12,8 @@ const Users = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState("");
   const [selectedRows, setSelectedRows] = useState("");
   const [recordItem, setRecordItem] = useState("");
+
+  let history = useHistory();
 
   // rowSelection objects indicates the need for row selection
   const rowSelection = {
@@ -26,7 +30,7 @@ const Users = () => {
     },
   };
 
-  const _handleDeleteAll = (id) => {
+  const _handleDeleteAll = () => {
     confirm({
       title: "Are you sure delete All tasks?",
       icon: <ExclamationCircleOutlined />,
@@ -70,17 +74,19 @@ const Users = () => {
       },
     });
   };
-  // todos: state.todos.filter(item => item.id !== action.payload.id)
   useEffect(() => {
     const fectchUsers = async () => {
       const res = await axios.get(
         "https://randomuser.me/api/?page=1&results=100"
       );
-      console.log(res.data.results);
       setData(res.data.results);
     };
     fectchUsers();
   }, []);
+
+  const handleViewDetail = () => {
+    history.push(URL_PAGE.USERS_DETAIL);
+  };
 
   const columns = [
     {
@@ -121,8 +127,12 @@ const Users = () => {
       render: () => {
         return (
           <div className="table__action">
-            <Button type="primary">Update</Button>
-            <Button type="primary" className="btn-success">
+            <Button
+              type="primary"
+              className="btn-success"
+              style={{ marginRight: 16 }}
+              onClick={handleViewDetail}
+            >
               View
             </Button>
             <Button type="primary" danger onClick={handleDelete}>
@@ -143,6 +153,7 @@ const Users = () => {
           // e.stopPropagation();
           _handleDeleteAll();
         }}
+        style={{ marginBottom: 16 }}
       >
         Delete Seleted Item
       </Button>

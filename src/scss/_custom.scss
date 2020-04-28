@@ -31,3 +31,70 @@
 .ant-table-body {
   max-height: 100% !important;
 }
+
+//profile
+.profile {
+  .ant-row {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.profile__title {
+  color: rgba(0, 0, 0, 0.85);
+  line-height: 24px;
+  display: block;
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.profile__info {
+  text-align: center;
+  margin-top: 70px;
+
+  &__regency {
+    font-size: 16px;
+  }
+
+  &__name {
+    margin: 20px 0;
+    font-size: 18px;
+  }
+}
+
+.profile__avatar {
+  position: absolute;
+  top: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.site-description-item-profile-p {
+  color: rgba(0, 0, 0, 0.85);
+  margin-right: 8px;
+  display: inline-block;
+}
+
+.site-description-item-profile-wrapper {
+  font-size: 14px;
+  line-height: 22px;
+  margin-bottom: 7px;
+}
+
+.ant-col-profile {
+  margin-top: 80px;
+  margin-bottom: 20px;
+}
+
+.ant-spin-nested-loading>div>.ant-spin {
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+.detaul_userdetaul_user .ant-descriptions-item-label {
+  font-weight: bold;
+}
