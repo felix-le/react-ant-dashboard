@@ -6,13 +6,13 @@ https://randomuser.me/api/?page=1&results=5
 
    a. Add view, delete Button, columns CMT, STT,
 
-- click to view --> Show detail
-- click to delete ==> Pop up + confirm delete
+- click to view --> Show detail - done
+- click to delete ==> Pop up + confirm delete - done
 
-  b. Search
-  c. Passions page
+  c. Passions page - done
 
   d. Can add new User to local storage and show it on the user list
+  e. Search !!!
 
 2. Register page:
 

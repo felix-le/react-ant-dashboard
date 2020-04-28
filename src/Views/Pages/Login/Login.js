@@ -1,17 +1,9 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Checkbox, Layout } from "antd";
-import { connect } from "react-redux";
-import {
-  // Router,
-  // Switch,
-  // Route,
-  // Link,
-  // Redirect,
-  BrowserRouter as useHistory,
-  // useLocation,
-} from "react-router-dom";
+// import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-import { setUser } from "../../../redux/actions";
+// import { setUser } from "../../../redux/actions";
 const layout = {
   labelCol: {
     span: 8,
@@ -36,7 +28,7 @@ const Login = ({ setUser }) => {
 
   const onFinish = (values) => {
     console.log(values);
-    setUser(values.username, values.password);
+    // setUser(values.username, values.password);
     history.push("/");
   };
 
@@ -101,17 +93,19 @@ const Login = ({ setUser }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  const {
-    appReducers: { data },
-  } = state;
-  console.log(state);
-  return {
-    data,
-  };
-};
-const mapDispatchToProps = {
-  setUser,
-};
+// const mapStateToProps = (state) => {
+//   const {
+//     appReducers: { data },
+//   } = state;
+//   console.log(state);
+//   return {
+//     data,
+//   };
+// };
+// const mapDispatchToProps = {
+//   setUser,
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+// export default connect(mapStateToProps, mapDispatchToProps)(Login);
+
+export default Login;
