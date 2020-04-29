@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from "react";
+import { connect } from 'react-redux';
 import { Descriptions, Row, Col, Card, Avatar } from "antd";
 import axios from "axios";
 
 const DetailUser = () => {
-  const [dataUser, setDataUser] = useState({});
-  useEffect(() => {
-    const fectchUsers = async () => {
-      const res = await axios.get("https://randomuser.me/api/?results=1");
-      setDataUser(res.data.results[0]);
-    };
-    fectchUsers();
-  }, []);
-  console.log(dataUser);
+  // const [dataUser, setDataUser] = useState({});
+  // useEffect(() => {
+  //   const fectchUsers = async () => {
+  //     const res = await axios.get("https://randomuser.me/api/?results=1");
+  //     setDataUser(res.data.results[0]);
+  //   };
+  //   fectchUsers();
+  // }, []);
+  // console.log(dataUser);
 
   const Description = () => {
     return (
       <>
-        <Descriptions title="User Info" layout="vertical" bordered>
+        {/* <Descriptions title="User Info" layout="vertical" bordered>
           <Descriptions.Item label="Contact" style={{}}>
             {dataUser.cell}
           </Descriptions.Item>
@@ -40,37 +41,39 @@ const DetailUser = () => {
           <Descriptions.Item label="ID">
             {dataUser.id.name || "hidden"} {dataUser.id.value || ""}
           </Descriptions.Item>
-        </Descriptions>
+        </Descriptions> */}
       </>
     );
   };
 
-  const DetailAvatar = () => {
-    return (
-      <>
-        <Card>
-          <div className="profile__avatar">
-            <Avatar size={130} src={dataUser.picture.large} />
-          </div>
-          <div className="profile__info">
-            <div className="profile__info__regency">{dataUser.name.title}</div>
-            <div className="profile__info__name">
-              {dataUser.name.first}. {dataUser.name.last}
-            </div>
-            <div className="profile__info__bio">
-              We don&lsquo;t be scared of the truth because we need to restart
-              the human foundation in truth And I love you like Kanye loves
-              Kanye I love Rick Owens’ bed design.
-            </div>
-          </div>
-        </Card>
-      </>
-    );
-  };
+  // const DetailAvatar = () => {
+  //   return (
+  //     <>
+  //       <Card>
+  //         <div className="profile__avatar">
+  //           <Avatar size={130} src={dataUser.picture.large} />
+  //         </div>
+  //         <div className="profile__info">
+  //           <div className="profile__info__regency">{dataUser.name.title}</div>
+  //           <div className="profile__info__name">
+  //             {dataUser.name.first}. {dataUser.name.last}
+  //           </div>
+  //           <div className="profile__info__bio">
+  //             We don&lsquo;t be scared of the truth because we need to restart
+  //             the human foundation in truth And I love you like Kanye loves
+  //             Kanye I love Rick Owens’ bed design.
+  //           </div>
+  //         </div>
+  //       </Card>
+  //     </>
+  //   );
+  // };
 
   return (
     <div className="detaul_userdetaul_user">
-      {Object.keys(dataUser).length > 0 ? (
+      this is detail user
+
+      {/* {Object.keys(dataUser).length > 0 ? (
         <Row>
           <Col span={18} order={1}>
             <Description />
@@ -81,9 +84,18 @@ const DetailUser = () => {
         </Row>
       ) : (
         <div>loading</div>
-      )}
+      )} */}
     </div>
   );
 };
 
-export default DetailUser;
+const mapStateToProps = state => {
+  const { user } = state.userReducers;
+  console.log(user);
+
+  return {
+    user
+  }
+}
+
+export default connect(mapStateToProps, null)(DetailUser);

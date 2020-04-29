@@ -84,8 +84,9 @@ const Users = () => {
     fectchUsers();
   }, []);
 
-  const handleViewDetail = () => {
-    history.push(URL_PAGE.USERS_DETAIL);
+  const handleViewDetail = (record) => () => {
+    console.log(record)
+    // history.push(URL_PAGE.USERS_DETAIL);
   };
 
   const columns = [
@@ -131,7 +132,7 @@ const Users = () => {
               type="primary"
               className="btn-success"
               style={{ marginRight: 16 }}
-              onClick={handleViewDetail}
+              onClick={handleViewDetail(record)}
             >
               View
             </Button>

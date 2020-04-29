@@ -6,6 +6,7 @@ import storage from "redux-persist/lib/storage";
 
 // import reducers
 import appReducers from "./redux/reducers";
+import userReducers from './Views/Pages/Users/redux/reducers';
 
 // config persist
 const persisConfig = {
@@ -17,6 +18,7 @@ const persisConfig = {
 
 const allReducers = {
   appReducers,
+  userReducers
 };
 
 const reducers = combineReducers({

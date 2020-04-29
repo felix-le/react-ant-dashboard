@@ -11,6 +11,7 @@ const initialState = {
   loading: false,
   error: false,
   keywords: "",
+  user: {}
 };
 
 const Userreducers = (state = initialState, action) => {
