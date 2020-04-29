@@ -4,6 +4,7 @@ import {
   FETCH_USER_SUCCESS,
   FETCH_USER_ERROR,
   SEARCH_USER,
+  USER_DETAIL,
 } from "./types";
 import * as api from "../../../../server/api";
 
@@ -39,3 +40,10 @@ export const fectchUsers = () => async (dispatch) => {
     });
   }
 };
+
+export const detailUser = (userpass) => ({
+  type: USER_DETAIL,
+  payload: {
+    userpass,
+  },
+});

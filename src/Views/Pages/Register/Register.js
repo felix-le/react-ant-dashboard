@@ -245,7 +245,6 @@ const mapStateToProps = (state) => {
   const {
     appReducers: { users },
   } = state;
-  console.log(state);
   return {
     users,
   };

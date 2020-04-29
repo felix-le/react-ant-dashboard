@@ -4,6 +4,7 @@ import {
   FETCH_USER_SUCCESS,
   FETCH_USER_ERROR,
   SEARCH_USER,
+  USER_DETAIL,
 } from "./types";
 const initialState = {
   visibleUsersRedux: [],
@@ -11,7 +12,7 @@ const initialState = {
   loading: false,
   error: false,
   keywords: "",
-  user: {}
+  user: {},
 };
 
 const Userreducers = (state = initialState, action) => {
@@ -59,6 +60,13 @@ const Userreducers = (state = initialState, action) => {
       };
     }
     //------------------------------------------------------------
+    case USER_DETAIL: {
+      return {
+        ...state,
+        user: action.payload,
+      };
+    }
+
     default:
       return state;
   }

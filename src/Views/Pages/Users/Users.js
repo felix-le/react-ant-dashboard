@@ -5,9 +5,12 @@ import axios from "axios";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import URL_PAGE from "../../../configs/url";
+import { connect } from "react-redux";
+import { detailUser } from "./redux/actions";
+
 const { confirm } = Modal;
 
-const Users = () => {
+const Users = ({ detailUser }) => {
   const [data, setData] = useState([]);
   const [selectedRowKeys, setSelectedRowKeys] = useState("");
   const [selectedRows, setSelectedRows] = useState("");
@@ -50,30 +53,25 @@ const Users = () => {
       },
     });
   };
-  if (Object.keys(recordItem).length > 0) {
-    console.log(recordItem.login.uuid);
-  } else {
-  }
 
   const handleDelete = (record) => () => {
-    console.log(record);
-    // confirm({
-    //   title: "Are you sure delete the task?",
-    //   icon: <ExclamationCircleOutlined />,
-    //   content: "Some descriptions",
-    //   okText: "Yes",
-    //   okType: "danger",
-    //   cancelText: "No",
-    //   onOk() {
-    //     const deleteArr = data.filter(
-    //       (item) => item.login.uuid !== recordItem.login.uuid
-    //     );
-    //     setData(deleteArr);
-    //   },
-    //   onCancel() {
-    //     console.log("Cancel");
-    //   },
-    // });
+    confirm({
+      title: "Are you sure delete the task?",
+      icon: <ExclamationCircleOutlined />,
+      content: "Some descriptions",
+      okText: "Yes",
+      okType: "danger",
+      cancelText: "No",
+      onOk() {
+        const deleteArr = data.filter(
+          (item) => item.login.uuid !== recordItem.login.uuid
+        );
+        setData(deleteArr);
+      },
+      onCancel() {
+        console.log("Cancel");
+      },
+    });
   };
 
   useEffect(() => {
@@ -85,8 +83,8 @@ const Users = () => {
   }, []);
 
   const handleViewDetail = (record) => () => {
-    console.log(record)
-    // history.push(URL_PAGE.USERS_DETAIL);
+    detailUser(record);
+    history.push(URL_PAGE.USERS_DETAIL);
   };
 
   const columns = [
@@ -170,4 +168,16 @@ const Users = () => {
   );
 };
 
-export default Users;
+const mapStateToProps = (state) => {
+  const {
+    userReducers: { user },
+  } = state;
+  return {
+    user,
+  };
+};
+
+const mapDispatchToProps = {
+  detailUser,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Users);
