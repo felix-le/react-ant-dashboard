@@ -78,10 +78,8 @@ const Users = () => {
 
   useEffect(() => {
     const fectchUsers = async () => {
-      const res = await axios.get(
-        "https://randomuser.me/api/?page=1&results=100"
-      );
-      setData(res.data.results);
+      const res = await axios.get("http://localhost:4000/results");
+      setData(res.data);
     };
     fectchUsers();
   }, []);

@@ -1,12 +1,11 @@
 import { SET_USER } from "./types";
 const initialState = {
-  data: [],
   visibleUsersRedux: [],
   initUsersRedux: [],
   loading: false,
   error: false,
   keywords: "",
-  users: {},
+  users: [],
 };
 
 // let newObjectUser = {};
@@ -16,7 +15,7 @@ const reducers = (state = initialState, action) => {
     case SET_USER: {
       return {
         ...state,
-        data: [...state.data, action.payload],
+        users: [...state.users, action.payload],
       };
     }
     // case SET_USER: {

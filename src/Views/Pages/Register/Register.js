@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   Form,
@@ -49,13 +49,16 @@ const Register = ({ setUser }) => {
   let history = useHistory();
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
-    console.log(values.email);
-    // setUser({
-
-    // });
+    setUser(
+      values.email,
+      values.nickname,
+      values.password,
+      values.phone,
+      values.prefix,
+      values.webiste
+    );
     history.push("/login");
   };
-
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
       <Select
@@ -225,7 +228,7 @@ const Register = ({ setUser }) => {
           {...tailFormItemLayout}
         >
           <Checkbox>
-            I have read the <a href="#">agreement</a>
+            I have read the <Link to="#">agreement</Link>
           </Checkbox>
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
@@ -240,11 +243,11 @@ const Register = ({ setUser }) => {
 
 const mapStateToProps = (state) => {
   const {
-    appReducers: { data },
+    appReducers: { users },
   } = state;
   console.log(state);
   return {
-    data,
+    users,
   };
 };
 const mapDispatchToProps = {

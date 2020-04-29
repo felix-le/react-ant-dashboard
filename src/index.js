@@ -8,6 +8,7 @@ import "./scss/style.scss";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { stores, persistor } from "./stores";
+
 ReactDOM.render(
   <Provider store={stores}>
     <PersistGate loading={null} persistor={persistor}>

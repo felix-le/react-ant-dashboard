@@ -20,7 +20,7 @@ API for USERS: get from json-server
 
    b. setUser function (redux) here + save to database instate of Login
 
-3) Login page:
+3. Login page:
 
    a. Remove setUser redux
 
@@ -28,10 +28,10 @@ API for USERS: get from json-server
 
    c. Each user account has different user account
 
-4) Profile user account call api from json-server
+4. Profile user account call api from json-server
 
-5) Private page:
+5. Private page:
 
    a. Must login before access the user list page
 
-6) Draw chart, show total user on Dashboard page
+6. Draw chart, show total user on Dashboard page
