@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Checkbox, Layout } from "antd";
 // import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -41,6 +41,12 @@ const Login = ({ setUser }) => {
     setAccount({ ...account, [name]: value });
   };
 
+  const persistedState = localStorage.getItem("appReducers")
+    ? JSON.parse(localStorage.getItem("appReducers"))
+    : {};
+  useEffect(() => {
+    console.log("OUTPUT: Login -> initialUser", persistedState);
+  });
   return (
     <Layout className="login-page-wrapper">
       <Form
