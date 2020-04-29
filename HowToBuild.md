@@ -22,7 +22,7 @@ API for USERS: get from json-server
 
 3. Login page:
 
-   a. Remove setUser redux
+   a. Remove setUser redux - done
 
    b. Check user account in local storage
 
