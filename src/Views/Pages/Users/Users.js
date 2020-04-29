@@ -55,25 +55,27 @@ const Users = () => {
   } else {
   }
 
-  const handleDelete = () => {
-    confirm({
-      title: "Are you sure delete the task?",
-      icon: <ExclamationCircleOutlined />,
-      content: "Some descriptions",
-      okText: "Yes",
-      okType: "danger",
-      cancelText: "No",
-      onOk() {
-        const deleteArr = data.filter(
-          (item) => item.login.uuid !== recordItem.login.uuid
-        );
-        setData(deleteArr);
-      },
-      onCancel() {
-        console.log("Cancel");
-      },
-    });
+  const handleDelete = (record) => () => {
+    console.log(record);
+    // confirm({
+    //   title: "Are you sure delete the task?",
+    //   icon: <ExclamationCircleOutlined />,
+    //   content: "Some descriptions",
+    //   okText: "Yes",
+    //   okType: "danger",
+    //   cancelText: "No",
+    //   onOk() {
+    //     const deleteArr = data.filter(
+    //       (item) => item.login.uuid !== recordItem.login.uuid
+    //     );
+    //     setData(deleteArr);
+    //   },
+    //   onCancel() {
+    //     console.log("Cancel");
+    //   },
+    // });
   };
+
   useEffect(() => {
     const fectchUsers = async () => {
       const res = await axios.get(
@@ -124,7 +126,7 @@ const Users = () => {
       key: "operation",
       fixed: "right",
       // width: "30%",
-      render: () => {
+      render: (record) => {
         return (
           <div className="table__action">
             <Button
@@ -135,7 +137,7 @@ const Users = () => {
             >
               View
             </Button>
-            <Button type="primary" danger onClick={handleDelete}>
+            <Button type="primary" danger onClick={handleDelete(record)}>
               Delete
             </Button>
           </div>
