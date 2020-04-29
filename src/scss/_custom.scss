@@ -98,3 +98,20 @@
 .detaul_userdetaul_user .ant-descriptions-item-label {
   font-weight: bold;
 }
+
+// Register
+
+.register-page-wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#register {
+  min-width: 500px;
+
+  @media (max-width:490px) {
+    min-width: auto;
+  }
+}

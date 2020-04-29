@@ -6,13 +6,13 @@ API for USERS: get from json-server
 
    a. Add view, delete Button, columns CMT, STT,
 
-- click to view --> Show detail
+- click to view --> Show detail - done
+- click to delete ==> Pop up + confirm delete - done
 
-- click to delete ==> Pop up + confirm delete
+  c. Passions page - done
 
-  b. Search
-
-  c. Pagination
+  d. Can add new User to local storage and show it on the user list
+  e. Search !!!
 
 2. Register page:
 
