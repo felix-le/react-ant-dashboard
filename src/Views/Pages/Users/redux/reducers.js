@@ -3,9 +3,9 @@ import {
   FETCH_USER_SUCCESS,
   FETCH_USER_ERROR,
   REMOVE_USER,
-  SEARCH_USER,
+  // SEARCH_USER,
   USER_DETAIL,
-  REMOVE_ALL
+  REMOVE_ALL,
 } from "./types";
 const initialState = {
   visibleUsersRedux: [],
@@ -50,13 +50,15 @@ const Userreducers = (state = initialState, action) => {
     // ----------------------------------------------------------------
     case REMOVE_USER: {
       const { email } = action.payload.user;
-      const newUsers = state.visibleUsersRedux.filter(user => user.email !== email);
+      const newUsers = state.visibleUsersRedux.filter(
+        (user) => user.email !== email
+      );
 
       // array find, findIndex, filter, indexOf, map, reducer
 
       return {
         ...state,
-        visibleUsersRedux: newUsers
+        visibleUsersRedux: newUsers,
         // removeIndex: state.visibleUsersRedux
         //   .map(function (item) {
         //     return item.email;
@@ -71,7 +73,7 @@ const Userreducers = (state = initialState, action) => {
       return {
         ...state,
         // visibleUsersRedux: ...
-      }
+      };
     }
 
     default:

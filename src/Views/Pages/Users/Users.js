@@ -10,20 +10,13 @@ const { confirm } = Modal;
 
 const Users = ({
   detailUser,
-  // loading,
-  // error,
-  // data,
-  // initUsersRedux,
   visibleUsersRedux,
   fetchUsers,
   removeUser,
-  removeAll
+  removeAll,
 }) => {
-  // const [data, setData] = useState([]);
-  const [showData, setShowData] = useState([]);
   const [selectedRowKeys, setSelectedRowKeys] = useState("");
   const [selectedRows, setSelectedRows] = useState("");
-  // const [recordItem, setRecordItem] = useState("");
   const [records, setRecords] = useState([]);
 
   let history = useHistory();
@@ -35,23 +28,18 @@ const Users = ({
       setSelectedRows(selectedRows);
     },
     onSelect: (record, selected, selectedRows) => {
-      // setRecordItem(record);
       const newEmails = [];
-      for(const value of selectedRows) {
-        newEmails.push(value.email)
+      for (const value of selectedRows) {
+        newEmails.push(value.email);
       }
       setRecords(newEmails);
-      // console.log(record, selected, selectedRows);
     },
     onSelectAll: (selected, selectedRows, changeRows) => {
-      // Đoạn này lỗi khi xóa all rồi, click selected all tiếp thì thằng selected rows vẫn hiển thị ra những thằng đã bị xóa với thông số là undefined
       const newEmails = [];
-      for(const value of selectedRows) {
-        newEmails.push(value.email)
+      for (const value of selectedRows) {
+        newEmails.push(value.email);
       }
       setRecords(newEmails);
-      // console.log(selected, selectedRows, changeRows);
-      // console.log(selectedRows);
     },
   };
 
@@ -64,20 +52,13 @@ const Users = ({
       okType: "danger",
       cancelText: "No",
       onOk() {
-        removeAll(records)
-        // console.log(...selectedRowKeys);
-        // const dataSource = [...visibleUsersRedux];
-        // dataSource.splice(selectedRows, selectedRows.length);
-        // setShowData(dataSource);
-        // setSelectedRowKeys([]);
-        // setSelectedRows([]);
+        removeAll(records);
       },
       onCancel() {
         console.log("Cancel");
       },
     });
   };
-  // console.log(visibleUsersRedux);
 
   const handleDelete = (record) => () => {
     confirm({
@@ -89,8 +70,6 @@ const Users = ({
       cancelText: "No",
       onOk() {
         removeUser(record);
-        // setShowData(visibleUsersRedux);
-        // console.log(visibleUsersRedux);
         console.log("deleted");
       },
       onCancel() {
@@ -101,7 +80,6 @@ const Users = ({
 
   useEffect(() => {
     fetchUsers();
-    // setShowData(visibleUsersRedux);
   }, [fetchUsers]);
 
   const handleViewDetail = (record) => () => {
@@ -144,7 +122,6 @@ const Users = ({
       title: "Action",
       key: "operation",
       fixed: "right",
-      // width: "30%",
       render: (record) => {
         return (
           <div className="table__action">
@@ -171,7 +148,6 @@ const Users = ({
         type="primary"
         danger
         onClick={() => {
-          // e.stopPropagation();
           _handleDeleteAll();
         }}
         style={{ marginBottom: 16 }}
@@ -215,6 +191,6 @@ const mapDispatchToProps = {
   detailUser,
   fetchUsers,
   removeUser,
-  removeAll
+  removeAll,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Users);
