@@ -5,6 +5,7 @@ import {
   FETCH_USER_ERROR,
   SEARCH_USER,
   USER_DETAIL,
+  REMOVE_ALL
 } from "./types";
 import * as api from "../../../../server/api";
 
@@ -33,9 +34,17 @@ export const detailUser = (userpass) => ({
   },
 });
 
-export const removeUser = (userRemove) => ({
+export const removeUser = (user) => ({
   type: REMOVE_USER,
   payload: {
-    userRemove,
+    user,
   },
 });
+
+
+export const removeAll = (users) => ({
+  type: REMOVE_ALL,
+  payload: {
+    users
+  }
+})

@@ -5,7 +5,7 @@ import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import URL_PAGE from "../../../configs/url";
 import { connect } from "react-redux";
-import { detailUser, fetchUsers, removeUser } from "./redux/actions";
+import { detailUser, fetchUsers, removeUser, removeAll } from "./redux/actions";
 const { confirm } = Modal;
 
 const Users = ({
@@ -17,12 +17,14 @@ const Users = ({
   visibleUsersRedux,
   fetchUsers,
   removeUser,
+  removeAll
 }) => {
   // const [data, setData] = useState([]);
   const [showData, setShowData] = useState([]);
   const [selectedRowKeys, setSelectedRowKeys] = useState("");
   const [selectedRows, setSelectedRows] = useState("");
   // const [recordItem, setRecordItem] = useState("");
+  const [records, setRecords] = useState([]);
 
   let history = useHistory();
 
@@ -34,12 +36,21 @@ const Users = ({
     },
     onSelect: (record, selected, selectedRows) => {
       // setRecordItem(record);
-      console.log(record, selected, selectedRows);
+      const newEmails = [];
+      for(const value of selectedRows) {
+        newEmails.push(value.email)
+      }
+      setRecords(newEmails);
+      // console.log(record, selected, selectedRows);
     },
     onSelectAll: (selected, selectedRows, changeRows) => {
       // Đoạn này lỗi khi xóa all rồi, click selected all tiếp thì thằng selected rows vẫn hiển thị ra những thằng đã bị xóa với thông số là undefined
-
-      console.log(selected, selectedRows, changeRows);
+      const newEmails = [];
+      for(const value of selectedRows) {
+        newEmails.push(value.email)
+      }
+      setRecords(newEmails);
+      // console.log(selected, selectedRows, changeRows);
       // console.log(selectedRows);
     },
   };
@@ -53,12 +64,13 @@ const Users = ({
       okType: "danger",
       cancelText: "No",
       onOk() {
+        removeAll(records)
         // console.log(...selectedRowKeys);
-        const dataSource = [...visibleUsersRedux];
-        dataSource.splice(selectedRows, selectedRows.length);
-        setShowData(dataSource);
-        setSelectedRowKeys([]);
-        setSelectedRows([]);
+        // const dataSource = [...visibleUsersRedux];
+        // dataSource.splice(selectedRows, selectedRows.length);
+        // setShowData(dataSource);
+        // setSelectedRowKeys([]);
+        // setSelectedRows([]);
       },
       onCancel() {
         console.log("Cancel");
@@ -76,7 +88,7 @@ const Users = ({
       okType: "danger",
       cancelText: "No",
       onOk() {
-        // removeUser(record);
+        removeUser(record);
         // setShowData(visibleUsersRedux);
         // console.log(visibleUsersRedux);
         console.log("deleted");
@@ -89,8 +101,8 @@ const Users = ({
 
   useEffect(() => {
     fetchUsers();
-    setShowData(visibleUsersRedux);
-  }, [visibleUsersRedux]);
+    // setShowData(visibleUsersRedux);
+  }, [fetchUsers]);
 
   const handleViewDetail = (record) => () => {
     detailUser(record);
@@ -168,7 +180,7 @@ const Users = ({
       </Button>
       <Table
         columns={columns}
-        dataSource={showData}
+        dataSource={visibleUsersRedux}
         rowKey={(record) => record.login.uuid}
         scroll={{ x: 1500, y: 300 }}
         pagination={{ pageSize: 5 }}
@@ -203,5 +215,6 @@ const mapDispatchToProps = {
   detailUser,
   fetchUsers,
   removeUser,
+  removeAll
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Users);

@@ -11,3 +11,5 @@ export const FETCH_USER_ERROR = "USER/FETCH_USER_ERROR";
 
 // Search Users from Api
 export const SEARCH_USER = "SEARCH_USER";
+
+export const REMOVE_ALL = "USER/REMOVE_ALL";

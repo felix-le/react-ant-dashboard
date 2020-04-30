@@ -5,6 +5,7 @@ import {
   REMOVE_USER,
   SEARCH_USER,
   USER_DETAIL,
+  REMOVE_ALL
 } from "./types";
 const initialState = {
   visibleUsersRedux: [],
@@ -13,7 +14,6 @@ const initialState = {
   error: false,
   keywords: "",
   user: {},
-  removeIndex: "",
 };
 
 const Userreducers = (state = initialState, action) => {
@@ -49,16 +49,29 @@ const Userreducers = (state = initialState, action) => {
     }
     // ----------------------------------------------------------------
     case REMOVE_USER: {
-      console.log(action.payload.userRemove.email);
+      const { email } = action.payload.user;
+      const newUsers = state.visibleUsersRedux.filter(user => user.email !== email);
+
+      // array find, findIndex, filter, indexOf, map, reducer
+
       return {
         ...state,
-        removeIndex: state.visibleUsersRedux
-          .map(function (item) {
-            return item.email;
-          })
-          .indexOf(action.payload.userRemove.email),
-        visibleUsersRedux: state.visibleUsersRedux.splice(state.removeIndex, 1),
+        visibleUsersRedux: newUsers
+        // removeIndex: state.visibleUsersRedux
+        //   .map(function (item) {
+        //     return item.email;
+        //   })
+        //   .indexOf(action.payload.user.email),
+        // visibleUsersRedux: state.visibleUsersRedux.splice(state.removeIndex, 1),
       };
+    }
+
+    case REMOVE_ALL: {
+      console.log(action.payload.users);
+      return {
+        ...state,
+        // visibleUsersRedux: ...
+      }
     }
 
     default:
