@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/react-ant-dashboard/static/css/main.b0338631.chunk.css",
-    "main.js": "/react-ant-dashboard/static/js/main.03baa7b3.chunk.js",
-    "main.js.map": "/react-ant-dashboard/static/js/main.03baa7b3.chunk.js.map",
+    "main.js": "/react-ant-dashboard/static/js/main.6773fb6d.chunk.js",
+    "main.js.map": "/react-ant-dashboard/static/js/main.6773fb6d.chunk.js.map",
     "runtime-main.js": "/react-ant-dashboard/static/js/runtime-main.3aef8e6d.js",
     "runtime-main.js.map": "/react-ant-dashboard/static/js/runtime-main.3aef8e6d.js.map",
     "static/css/2.a72c35d3.chunk.css": "/react-ant-dashboard/static/css/2.a72c35d3.chunk.css",
     "static/js/2.02b9ec82.chunk.js": "/react-ant-dashboard/static/js/2.02b9ec82.chunk.js",
     "static/js/2.02b9ec82.chunk.js.map": "/react-ant-dashboard/static/js/2.02b9ec82.chunk.js.map",
     "index.html": "/react-ant-dashboard/index.html",
-    "precache-manifest.b5d18e52677488150d2218f5d0d66a2f.js": "/react-ant-dashboard/precache-manifest.b5d18e52677488150d2218f5d0d66a2f.js",
+    "precache-manifest.fdcd7d2a5b1a0b9e998b97d23f10ad1b.js": "/react-ant-dashboard/precache-manifest.fdcd7d2a5b1a0b9e998b97d23f10ad1b.js",
     "service-worker.js": "/react-ant-dashboard/service-worker.js",
     "static/css/2.a72c35d3.chunk.css.map": "/react-ant-dashboard/static/css/2.a72c35d3.chunk.css.map",
     "static/css/main.b0338631.chunk.css.map": "/react-ant-dashboard/static/css/main.b0338631.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.a72c35d3.chunk.css",
     "static/js/2.02b9ec82.chunk.js",
     "static/css/main.b0338631.chunk.css",
-    "static/js/main.03baa7b3.chunk.js"
+    "static/js/main.6773fb6d.chunk.js"
   ]
 }
