@@ -1,4 +1,5 @@
 {
+  "homepage": "https:///vietanhcoder.github.io/react-ant-dashboard",
   "name": "react-ant-dashboard",
   "version": "0.1.0",
   "private": true,
@@ -9,6 +10,7 @@
     "ant-design-pro": "^2.3.2",
     "antd": "^4.1.4",
     "axios": "^0.19.2",
+    "gh-pages": "^2.2.0",
     "json-server": "^0.16.1",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
@@ -24,6 +26,8 @@
     "uuid": "^7.0.3"
   },
   "scripts": {
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
