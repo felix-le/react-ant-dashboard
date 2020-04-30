@@ -8,22 +8,7 @@ import {
 } from "./types";
 import * as api from "../../../../server/api";
 
-export const removeUser = (id) => ({
-  type: REMOVE_USER,
-  payload: {
-    id,
-    loading: false,
-  },
-});
-
-export const searchUser = (keywords) => ({
-  type: SEARCH_USER,
-  payload: {
-    keywords,
-  },
-});
-
-export const fectchUsers = () => async (dispatch) => {
+export const fetchUsers = () => async (dispatch) => {
   dispatch({
     type: FETCH_USER_START,
   });
@@ -45,5 +30,12 @@ export const detailUser = (userpass) => ({
   type: USER_DETAIL,
   payload: {
     userpass,
+  },
+});
+
+export const removeUser = (userRemove) => ({
+  type: REMOVE_USER,
+  payload: {
+    userRemove,
   },
 });

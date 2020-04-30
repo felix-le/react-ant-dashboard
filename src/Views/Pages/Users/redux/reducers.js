@@ -1,8 +1,8 @@
 import {
-  REMOVE_USER,
   FETCH_USER_START,
   FETCH_USER_SUCCESS,
   FETCH_USER_ERROR,
+  REMOVE_USER,
   SEARCH_USER,
   USER_DETAIL,
 } from "./types";
@@ -13,19 +13,11 @@ const initialState = {
   error: false,
   keywords: "",
   user: {},
+  removeIndex: "",
 };
 
 const Userreducers = (state = initialState, action) => {
   switch (action.type) {
-    case REMOVE_USER: {
-      return {
-        ...state,
-        visibleUsersRedux: state.visibleUsersRedux.filter((user) => {
-          return user.id !== action.payload.id;
-        }),
-      };
-    }
-    //------------------------------------------------------------
     case FETCH_USER_START: {
       return {
         ...state,
@@ -43,27 +35,29 @@ const Userreducers = (state = initialState, action) => {
     case FETCH_USER_ERROR: {
       return {
         ...state,
-        loading: false,
         error: true,
+        loading: false,
       };
     }
 
-    //------------------------------------------------------------
-    case SEARCH_USER: {
-      return {
-        ...state,
-        keywords: action.payload.keywords,
-        visibleUsersRedux: state.initUsersRedux.filter(
-          (user) => user.name.toLowerCase().indexOf(state.keywords) !== -1
-        ),
-        loading: false,
-      };
-    }
     //------------------------------------------------------------
     case USER_DETAIL: {
       return {
         ...state,
         user: action.payload,
+      };
+    }
+    // ----------------------------------------------------------------
+    case REMOVE_USER: {
+      console.log(action.payload.userRemove.email);
+      return {
+        ...state,
+        removeIndex: state.visibleUsersRedux
+          .map(function (item) {
+            return item.email;
+          })
+          .indexOf(action.payload.userRemove.email),
+        visibleUsersRedux: state.visibleUsersRedux.splice(state.removeIndex, 1),
       };
     }
 

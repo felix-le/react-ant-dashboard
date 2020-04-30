@@ -20,7 +20,7 @@ const routes = [
   },
   {
     path: URL_PAGE.USERS,
-    name: "Users",
+    name: "User List",
     component: Users,
   },
   {

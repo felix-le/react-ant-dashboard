@@ -42,7 +42,7 @@ const DefaultSideBar = () => {
         >
           <Menu.Item key="3">
             <Link to={URL_PAGE.USERS}>
-              <span>Users</span>
+              <span>User List</span>
             </Link>
           </Menu.Item>
         </SubMenu>
