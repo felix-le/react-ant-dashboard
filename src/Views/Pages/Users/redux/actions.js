@@ -15,7 +15,8 @@ export const fetchUsers = () => async (dispatch) => {
   });
   try {
     const res = await api.apiFetchUsers();
-    const data = res.data;
+
+    const data = res.results;
     dispatch({
       type: FETCH_USER_SUCCESS,
       payload: { data },
