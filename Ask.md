@@ -24,3 +24,11 @@ a. khi bấm vào seleted all --> nó vẫn show ra các item đã bị xóa hi�
 
 2. Lỗi khi xóa 2 thằng ??? (redux)
 3. thi thoảng nó hiện có 1 thằng ??
+
+---
+
+05.02
+
+1. tại sao phải parse 2 lần để lấy data?
+   react-ant-dashboard/src/Views/Pages/Login/Login.js
+2. Call thẻ p khi lỗi match data

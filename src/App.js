@@ -37,7 +37,7 @@ function App() {
           <Route
             exact
             path="/forgot-password"
-            name="Login Page"
+            name="Forgot pass Page"
             component={ForgotPassword}
           />
           {/* <PrivateRoute path="/" name="Home" component={DefaultLayout} /> */}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Checkbox, Layout } from "antd";
 // import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 // import { setUser } from "../../../redux/actions";
 const layout = {
@@ -30,16 +30,29 @@ export const loadState = () => {
   }
 };
 
-const Login = ({ setUser }) => {
+const Login = () => {
   const [account, setAccount] = useState({
     inputUser: "",
     inputPass: "",
   });
+  const [matchData, setMatchData] = useState(false);
+  const [localUsers, setLocalUsers] = useState([]);
   let history = useHistory();
 
   const onFinish = (values) => {
-    console.log(values);
-    history.push("/");
+    if (localUsers.length > 0) {
+      localUsers.map((user) => {
+        if (
+          user.username === values.username &&
+          user.password === values.password
+        ) {
+          setMatchData(true);
+          history.push("/");
+        } else {
+          setMatchData(false);
+        }
+      });
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -51,12 +64,26 @@ const Login = ({ setUser }) => {
     setAccount({ ...account, [name]: value });
   };
 
-  const persistedState = localStorage.getItem("appReducers")
-    ? JSON.parse(localStorage.getItem("appReducers"))
-    : {};
   useEffect(() => {
-    console.log("OUTPUT: Login -> initialUser", persistedState);
-  });
+    getLocalUsers();
+  }, []);
+
+  // Tại sao chỗ này phải parse 2 lần?
+
+  const getLocalUsers = () => {
+    const readDataLocalStorage = JSON.parse(
+      window.localStorage.getItem("persist:root")
+    );
+    if (Object.keys(readDataLocalStorage).length > 0) {
+      const localUsers = JSON.parse(readDataLocalStorage.appReducers).users
+        ? JSON.parse(readDataLocalStorage.appReducers).users
+        : {};
+      setLocalUsers(localUsers);
+    }
+  };
+  // Tại sao chỗ này phải parse 2 lần?
+
+  console.log(localUsers);
   return (
     <Layout className="login-page-wrapper">
       <Form
@@ -69,6 +96,10 @@ const Login = ({ setUser }) => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
+        <Form.Item {...tailLayout}>
+          <p>1</p>
+          <p>1</p>
+        </Form.Item>
         <Form.Item
           label="Username"
           name="username"
@@ -99,10 +130,20 @@ const Login = ({ setUser }) => {
         <Form.Item {...tailLayout} name="remember" valuePropName="checked">
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
+        {/* {errors.email && <p className="error">{errors.email}</p>} */}
         <Form.Item {...tailLayout}>
           <Button type="primary" htmlType="submit">
             Submit
           </Button>
+        </Form.Item>
+        <Form.Item {...tailLayout}>
+          <Link
+            to="/register-page"
+            type="primary"
+            className="ant-btn ant-btn-primary"
+          >
+            Register Now !
+          </Link>
         </Form.Item>
       </Form>
     </Layout>

@@ -6,15 +6,15 @@ const initialState = {
   error: false,
   keywords: "",
   users: [
-    // {
-    //   id: 1,
-    //   email: "test@gmail.com",
-    //   username: "test",
-    //   password: "test",
-    //   phone: 1,
-    //   prefix: "84",
-    //   website: "",
-    // },
+    {
+      id: 1,
+      email: "test@gmail.com",
+      username: "1",
+      password: "1",
+      phone: 1,
+      prefix: "84",
+      website: "",
+    },
   ],
 };
 
