@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Checkbox, Layout } from "antd";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 
-// import { setUser } from "../../../redux/actions";
+import { fetchLocalUser, getInputUser } from "../../../redux/actions";
 const layout = {
   labelCol: {
     span: 8,
@@ -18,41 +18,31 @@ const tailLayout = {
     span: 16,
   },
 };
-export const loadState = () => {
-  try {
-    const serializedState = localStorage.getItem("state");
-    if (serializedState === null) {
-      return undefined;
-    }
-    return JSON.parse(serializedState);
-  } catch (err) {
-    return undefined;
-  }
-};
 
-const Login = () => {
+const Login = ({ fetchLocalUser, getInputUser }) => {
   const [account, setAccount] = useState({
     inputUser: "",
     inputPass: "",
   });
-  const [matchData, setMatchData] = useState(false);
-  const [localUsers, setLocalUsers] = useState([]);
-  let history = useHistory();
+  // const [matchData, setMatchData] = useState(false);
+  // const [localUsers, setLocalUsers] = useState([]);
+  // let history = useHistory();
 
   const onFinish = (values) => {
-    if (localUsers.length > 0) {
-      localUsers.map((user) => {
-        if (
-          user.username === values.username &&
-          user.password === values.password
-        ) {
-          setMatchData(true);
-          history.push("/");
-        } else {
-          setMatchData(false);
-        }
-      });
-    }
+    getInputUser(values);
+    // if (localUsers.length > 0) {
+    //   localUsers.map((user) => {
+    //     if (
+    //       user.username === values.username &&
+    //       user.password === values.password
+    //     ) {
+    //       setMatchData(true);
+    //       history.push("/");
+    //     } else {
+    //       setMatchData(false);
+    //     }
+    //   });
+    // }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -65,25 +55,9 @@ const Login = () => {
   };
 
   useEffect(() => {
-    getLocalUsers();
+    fetchLocalUser();
   }, []);
 
-  // Tại sao chỗ này phải parse 2 lần?
-
-  const getLocalUsers = () => {
-    const readDataLocalStorage = JSON.parse(
-      window.localStorage.getItem("persist:root")
-    );
-    if (Object.keys(readDataLocalStorage).length > 0) {
-      const localUsers = JSON.parse(readDataLocalStorage.appReducers).users
-        ? JSON.parse(readDataLocalStorage.appReducers).users
-        : {};
-      setLocalUsers(localUsers);
-    }
-  };
-  // Tại sao chỗ này phải parse 2 lần?
-
-  console.log(localUsers);
   return (
     <Layout className="login-page-wrapper">
       <Form
@@ -150,19 +124,20 @@ const Login = () => {
   );
 };
 
-// const mapStateToProps = (state) => {
-//   const {
-//     appReducers: { data },
-//   } = state;
-//   console.log(state);
-//   return {
-//     data,
-//   };
-// };
-// const mapDispatchToProps = {
-//   setUser,
-// };
+const mapStateToProps = (state) => {
+  const {
+    appReducers: { users, user },
+  } = state;
+  // console.log(state);
+  return {
+    users,
+  };
+};
+const mapDispatchToProps = {
+  fetchLocalUser,
+  getInputUser,
+};
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
 
-export default Login;
+// export default Login;

@@ -18,6 +18,7 @@ const initialState = {
 
 const Userreducers = (state = initialState, action) => {
   switch (action.type) {
+    //------------------------------------------------------------
     case FETCH_USER_START: {
       return {
         ...state,
@@ -59,12 +60,6 @@ const Userreducers = (state = initialState, action) => {
       return {
         ...state,
         visibleUsersRedux: newUsers,
-        // removeIndex: state.visibleUsersRedux
-        //   .map(function (item) {
-        //     return item.email;
-        //   })
-        //   .indexOf(action.payload.user.email),
-        // visibleUsersRedux: state.visibleUsersRedux.splice(state.removeIndex, 1),
       };
     }
 

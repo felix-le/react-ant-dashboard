@@ -67,14 +67,18 @@ const DetailUser = ({ user }) => {
   return (
     <div className="detaul_userdetaul_user">
       {Object.keys(dataUser).length > 0 ? (
-        <Row>
-          <Col span={18} order={1}>
-            <Description />
-          </Col>
-          <Col span={6} order={4} className="ant-col-profile">
-            <DetailAvatar />
-          </Col>
-        </Row>
+        <>
+          <Row>
+            <Col span={12} offset={6} className="ant-col-profile">
+              <DetailAvatar />
+            </Col>
+          </Row>
+          <Row>
+            <Col span={12} offset={6}>
+              <Description />
+            </Col>
+          </Row>
+        </>
       ) : (
         <div>loading</div>
       )}
