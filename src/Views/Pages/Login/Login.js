@@ -3,7 +3,7 @@ import { Form, Input, Button, Checkbox, Layout } from "antd";
 import { connect } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 
-import { fetchLocalUser, getInputUser } from "../../../redux/actions";
+import { fetchLocalUser, checkUserInput } from "../../../redux/actions";
 const layout = {
   labelCol: {
     span: 8,
@@ -19,17 +19,11 @@ const tailLayout = {
   },
 };
 
-const Login = ({ fetchLocalUser, getInputUser }) => {
-  const [account, setAccount] = useState({
-    inputUser: "",
-    inputPass: "",
-  });
-  // const [matchData, setMatchData] = useState(false);
-  // const [localUsers, setLocalUsers] = useState([]);
-  // let history = useHistory();
-
+const Login = ({ fetchLocalUser, checkUserInput, matchData }) => {
+  let history = useHistory();
   const onFinish = (values) => {
-    getInputUser(values);
+    checkUserInput(values);
+    console.log(matchData);
     // if (localUsers.length > 0) {
     //   localUsers.map((user) => {
     //     if (
@@ -47,11 +41,6 @@ const Login = ({ fetchLocalUser, getInputUser }) => {
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
-  };
-
-  const _handleOnChange = (evt) => {
-    const { name, value } = evt.target;
-    setAccount({ ...account, [name]: value });
   };
 
   useEffect(() => {
@@ -83,9 +72,8 @@ const Login = ({ fetchLocalUser, getInputUser }) => {
               message: "Please input your username!",
             },
           ]}
-          onChange={(evt) => _handleOnChange(evt)}
         >
-          <Input name="inputUser" />
+          <Input />
         </Form.Item>
 
         <Form.Item
@@ -97,9 +85,8 @@ const Login = ({ fetchLocalUser, getInputUser }) => {
               message: "Please input your password!",
             },
           ]}
-          onChange={(evt) => _handleOnChange(evt)}
         >
-          <Input.Password name="inputPass" />
+          <Input.Password />
         </Form.Item>
         <Form.Item {...tailLayout} name="remember" valuePropName="checked">
           <Checkbox>Remember me</Checkbox>
@@ -126,16 +113,16 @@ const Login = ({ fetchLocalUser, getInputUser }) => {
 
 const mapStateToProps = (state) => {
   const {
-    appReducers: { users, user },
+    appReducers: { users, matchData },
   } = state;
-  // console.log(state);
   return {
     users,
+    matchData,
   };
 };
 const mapDispatchToProps = {
   fetchLocalUser,
-  getInputUser,
+  checkUserInput,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

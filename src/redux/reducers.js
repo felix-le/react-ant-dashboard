@@ -44,10 +44,16 @@ const reducers = (state = initialState, action) => {
       };
     }
     case FETCH_LOCAL_USER_SUCCESS: {
-      console.log(state);
       return {
         ...state,
         users: [...state, action.payload],
+      };
+    }
+    case FETCH_LOCAL_USER_ERROR: {
+      return {
+        ...state,
+        error: true,
+        loading: false,
       };
     }
     // ----------------------------------------------------------------
@@ -55,22 +61,23 @@ const reducers = (state = initialState, action) => {
       const { username, password } = action.payload.values;
       console.log("OUTPUT: reducers -> password", password);
       console.log("OUTPUT: reducers -> username", username);
-      console.log(state.user);
-      // if (state.users.length > 0) {
-      //   const matchUser = state.users.map((userData) => {
-      //     if (
-      //       userData.username === username &&
-      //       userData.password === password
-      //     ) {
-      //       return user;
-      //     }
-      //   });
-      // }
-      return {
-        ...state,
-        // user: matchUser,
-      };
+      // console.log(state.user);
+      if (state.users.length > 0) {
+        state.users.map((userData) => {
+          if (
+            userData.username === username &&
+            userData.password === password
+          ) {
+            return {
+              ...state,
+              matchData: true,
+            };
+          }
+        });
+      }
+      return {};
     }
+
     default:
       return state;
   }

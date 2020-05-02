@@ -39,7 +39,7 @@ export const fetchLocalUser = () => async (dispatch) => {
   }
 };
 // ----------------------------------------------------------------
-export const getInputUser = (values) => ({
+export const checkUserInput = (values) => ({
   type: GET_USER,
   payload: {
     values,
