@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 import * as api from "../server/api";
 import {
   SET_USER,
-  GET_USER,
+  CHECK_USER,
   FETCH_LOCAL_USER_START,
   FETCH_LOCAL_USER_SUCCESS,
   FETCH_LOCAL_USER_ERROR,
@@ -40,7 +40,7 @@ export const fetchLocalUser = () => async (dispatch) => {
 };
 // ----------------------------------------------------------------
 export const checkUserInput = (values) => ({
-  type: GET_USER,
+  type: CHECK_USER,
   payload: {
     values,
   },

@@ -1,6 +1,6 @@
 import {
   SET_USER,
-  GET_USER,
+  CHECK_USER,
   FETCH_LOCAL_USER_START,
   FETCH_LOCAL_USER_SUCCESS,
   FETCH_LOCAL_USER_ERROR,
@@ -57,27 +57,29 @@ const reducers = (state = initialState, action) => {
       };
     }
     // ----------------------------------------------------------------
-    case GET_USER: {
+    // BEGIN NEED TO HELP
+    case CHECK_USER: {
       const { username, password } = action.payload.values;
       console.log("OUTPUT: reducers -> password", password);
       console.log("OUTPUT: reducers -> username", username);
       // console.log(state.user);
-      if (state.users.length > 0) {
-        state.users.map((userData) => {
-          if (
-            userData.username === username &&
-            userData.password === password
-          ) {
-            return {
-              ...state,
-              matchData: true,
-            };
-          }
-        });
-      }
+
+      // if (state.users.length > 0) {
+      //   state.users.map((userData) => {
+      //     if (
+      //       userData.username === username &&
+      //       userData.password === password
+      //     ) {
+      //       return {
+      //         ...state,
+      //         matchData: true,
+      //       };
+      //     }
+      //   });
+      // }
       return {};
     }
-
+    // END
     default:
       return state;
   }

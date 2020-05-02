@@ -23,7 +23,7 @@ const Login = ({ fetchLocalUser, checkUserInput, matchData }) => {
   let history = useHistory();
   const onFinish = (values) => {
     checkUserInput(values);
-    console.log(matchData);
+    console.log(values);
     // if (localUsers.length > 0) {
     //   localUsers.map((user) => {
     //     if (
