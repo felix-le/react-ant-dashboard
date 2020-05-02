@@ -30,7 +30,7 @@ export const fetchLocalUser = () => async (dispatch) => {
     console.log("res", res);
     dispatch({
       type: FETCH_LOCAL_USER_SUCCESS,
-      payload: res,
+      payload: { res },
     });
   } catch (err) {
     dispatch({
