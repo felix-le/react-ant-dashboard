@@ -18,6 +18,17 @@ const tailLayout = {
     span: 16,
   },
 };
+export const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem("state");
+    if (serializedState === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedState);
+  } catch (err) {
+    return undefined;
+  }
+};
 
 const Login = ({ setUser }) => {
   const [account, setAccount] = useState({
@@ -28,7 +39,6 @@ const Login = ({ setUser }) => {
 
   const onFinish = (values) => {
     console.log(values);
-    // setUser(values.username, values.password);
     history.push("/");
   };
 

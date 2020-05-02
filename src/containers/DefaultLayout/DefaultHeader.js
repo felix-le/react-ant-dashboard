@@ -5,6 +5,8 @@ import { URL_PAGE } from "../../configs";
 const { Header } = Layout;
 
 const DefaultHeader = () => {
+  const _handleLogOut = () => {};
+
   const menu = (
     <Menu>
       <Menu.Item key="1">
@@ -15,7 +17,9 @@ const DefaultHeader = () => {
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="3">
-        <Link to={URL_PAGE.CHANGE_PASSWORD}>Logout</Link>
+        <Link to={"/login"} onClick={() => _handleLogOut}>
+          Logout
+        </Link>
       </Menu.Item>
     </Menu>
   );

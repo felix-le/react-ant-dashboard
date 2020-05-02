@@ -10,6 +10,19 @@ function App() {
   const loading = () => (
     <div className="ant-divider-with-text-center">Loading....</div>
   );
+
+  const fakeAuth = {
+    isAuthenticated: false,
+    authenticate(cb) {
+      fakeAuth.isAuthenticated = true;
+      setTimeout(cb, 100); // fake async
+    },
+    signout(cb) {
+      fakeAuth.isAuthenticated = false;
+      setTimeout(cb, 100);
+    },
+  };
+
   return (
     <HashRouter>
       <React.Suspense fallback={loading()}>
@@ -27,6 +40,7 @@ function App() {
             name="Login Page"
             component={ForgotPassword}
           />
+          {/* <PrivateRoute path="/" name="Home" component={DefaultLayout} /> */}
           <Route path="/" name="Home" component={DefaultLayout} />
         </Switch>
       </React.Suspense>

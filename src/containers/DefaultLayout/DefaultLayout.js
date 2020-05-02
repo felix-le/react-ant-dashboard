@@ -1,10 +1,9 @@
 import React, { Suspense } from "react";
 import "antd/dist/antd.css";
 import { Layout, Breadcrumb } from "antd";
-
 import { Redirect, Route, Switch } from "react-router-dom";
 import routes from "../../routes";
-
+import last from "lodash/last";
 import DefaultHeader from "./DefaultHeader";
 import DefaultFooter from "./DefaultFooter";
 import DefaultSideBar from "./DefaultSideBar";
@@ -12,6 +11,15 @@ import DefaultSideBar from "./DefaultSideBar";
 const { Content, Footer } = Layout;
 
 const DefaultLayout = () => {
+  const location = window.location.hash;
+
+  const getNodeLabel = (node) => last(node.split("/"));
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+  const breadcumbLabel = capitalizeFirstLetter(getNodeLabel(location));
+
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <DefaultSideBar />
@@ -22,7 +30,7 @@ const DefaultLayout = () => {
         <Suspense>
           <Content style={{ margin: "0 16px" }}>
             <Breadcrumb style={{ margin: "16px 0" }}>
-              <Breadcrumb.Item>Name-Page</Breadcrumb.Item>
+              <Breadcrumb.Item>{breadcumbLabel}</Breadcrumb.Item>
               <Breadcrumb.Item>Child-Page</Breadcrumb.Item>
             </Breadcrumb>
             <div className="container">

@@ -20,7 +20,6 @@ const Users = ({
   const [records, setRecords] = useState([]);
 
   let history = useHistory();
-
   // rowSelection objects indicates the need for row selection
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {

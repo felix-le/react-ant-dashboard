@@ -42,7 +42,13 @@ const routes = [
     exact: true,
   },
 
-  { path: URL_PAGE.PROFILE, name: "profile", component: Profile, exact: true },
+  {
+    path: URL_PAGE.PROFILE,
+    name: "profile",
+    component: Profile,
+    exact: true,
+    authority: ["users"],
+  },
   {
     path: URL_PAGE.USERS_DETAIL,
     name: "Detail User",
