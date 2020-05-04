@@ -20,7 +20,7 @@ export const setUser = (email, username, password, phone, prefix, website) => ({
     website,
   },
 });
-// ----------------------------------------------------------------
+// ---------------------------------------------------------------
 export const fetchLocalUsers = () => async (dispatch) => {
   dispatch({
     type: FETCH_LOCAL_USER_START,
