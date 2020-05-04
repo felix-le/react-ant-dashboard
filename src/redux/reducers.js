@@ -1,10 +1,4 @@
-import {
-  SET_USER,
-  USER_ACTIVE,
-  FETCH_LOCAL_USER_START,
-  FETCH_LOCAL_USER_SUCCESS,
-  FETCH_LOCAL_USER_ERROR,
-} from "./types";
+import { SET_USER, USER_ACTIVE, FETCH_LOCAL_USER_START, FETCH_LOCAL_USER_SUCCESS, FETCH_LOCAL_USER_ERROR } from "./types";
 const initialState = {
   visibleUsersRedux: [],
   initUsersRedux: [],
@@ -31,6 +25,7 @@ const initialState = {
 const reducers = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER: {
+      console.log("====set user=====", action.payload);
       return {
         ...state,
         users: [...state.users, action.payload],
@@ -61,7 +56,7 @@ const reducers = (state = initialState, action) => {
     case USER_ACTIVE: {
       return {
         ...state,
-        account: [action.payload],
+        account: action.payload,
       };
     }
     // END

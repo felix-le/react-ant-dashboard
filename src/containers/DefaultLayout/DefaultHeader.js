@@ -7,11 +7,11 @@ const { Header } = Layout;
 
 const DefaultHeader = ({ account }) => {
   const _handleLogOut = () => {};
-  const { username } = account[0].account;
+  console.log(account);
   const menu = (
     <Menu>
       <Menu.Item key="0">
-        <span>Hello {username}</span>
+        <span>Hello {account.username}</span>
       </Menu.Item>
       <Menu.Item key="1">
         <Link to={URL_PAGE.PROFILE}>Profile</Link>
@@ -30,23 +30,18 @@ const DefaultHeader = ({ account }) => {
 
   return (
     <Header className="site-layout-background" style={{ padding: 0 }}>
-      <div
-        className="avatar-wrapper"
-        style={{ padding: 0, textAlign: "right" }}
-      >
+      <div className="avatar-wrapper" style={{ padding: 0, textAlign: "right" }}>
         <Dropdown overlay={menu} trigger={["click"]}>
-          <Avatar
-            size="large"
-            src="https://bit.ly/34SWeiX"
-            style={{ right: "20px" }}
-          />
+          <Avatar size="large" src="https://bit.ly/34SWeiX" style={{ right: "20px" }} />
         </Dropdown>
       </div>
     </Header>
   );
 };
 const mapStateToProps = (state) => {
+  console.log(state);
   const { account } = state.appReducers;
+  console.log(account);
   return {
     account,
   };

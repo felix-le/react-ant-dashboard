@@ -24,17 +24,21 @@ const Login = ({ fetchLocalUsers, activeUser, user, error, users }) => {
   let history = useHistory();
 
   const onFinish = (values) => {
-    // checkUserInput(values);
-    console.log(values);
-    console.log(users);
-    // Should save this conditional function to reducer? and how?
-
     if (users.length > 0) {
-      users.map((user) =>
-        user.username === values.username && user.password === values.password
-          ? (history.push("/"), setErrorMatchData(false), activeUser(user))
-          : (console.log("data not match"), setErrorMatchData(true))
-      );
+      // users.map((user) =>
+      //   user.username === values.username && user.password === values.password
+      //     ? (history.push("/"), setErrorMatchData(false), activeUser(user))
+      //     : (console.log("data not match"), setErrorMatchData(true))
+      // );
+      const accounts = users.filter((user) => user.username === values.username);
+
+      if (accounts.length > 0) {
+        setErrorMatchData(false);
+        activeUser(accounts[0]);
+        history.push("/");
+      } else {
+        setErrorMatchData(true);
+      }
     } else {
       console.log("nothing to show");
     }
@@ -99,11 +103,7 @@ const Login = ({ fetchLocalUsers, activeUser, user, error, users }) => {
           </Button>
         </Form.Item>
         <Form.Item {...tailLayout}>
-          <Link
-            to="/register-page"
-            type="primary"
-            className="ant-btn ant-btn-primary"
-          >
+          <Link to="/register-page" type="primary" className="ant-btn ant-btn-primary">
             Register Now !
           </Link>
         </Form.Item>
