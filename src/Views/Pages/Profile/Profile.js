@@ -4,15 +4,10 @@ import { Descriptions, Row, Col } from "antd";
 
 const Profile = ({ account }) => {
   // const [dataUser, setDataUser] = useState({});
-  const {
-    username,
-    email,
-    password,
-    prefix,
-    phone,
-    website,
-  } = account[0].account;
+  console.log(account);
+
   const Description = () => {
+    const { username, email, password, prefix, phone, website } = account;
     return (
       <>
         <Descriptions title="User Info" layout="vertical" bordered>
