@@ -2,13 +2,17 @@ import React from "react";
 import { Layout, Avatar, Menu, Dropdown } from "antd";
 import { Link } from "react-router-dom";
 import { URL_PAGE } from "../../configs";
+import { connect } from "react-redux";
 const { Header } = Layout;
 
-const DefaultHeader = () => {
+const DefaultHeader = ({ account }) => {
   const _handleLogOut = () => {};
-
+  const { username } = account[0].account;
   const menu = (
     <Menu>
+      <Menu.Item key="0">
+        <span>Hello {username}</span>
+      </Menu.Item>
       <Menu.Item key="1">
         <Link to={URL_PAGE.PROFILE}>Profile</Link>
       </Menu.Item>
@@ -41,5 +45,10 @@ const DefaultHeader = () => {
     </Header>
   );
 };
-
-export default DefaultHeader;
+const mapStateToProps = (state) => {
+  const { account } = state.appReducers;
+  return {
+    account,
+  };
+};
+export default connect(mapStateToProps, null)(DefaultHeader);

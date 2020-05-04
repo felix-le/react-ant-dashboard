@@ -25,6 +25,7 @@ const Users = ({
     onChange: (selectedRowKeys, selectedRows) => {
       setSelectedRowKeys(selectedRowKeys);
       setSelectedRows(selectedRows);
+      
     },
     onSelect: (record, selected, selectedRows) => {
       const newEmails = [];
@@ -41,7 +42,7 @@ const Users = ({
       setRecords(newEmails);
     },
   };
-
+  console.log(selectedRowKeys, selectedRows)
   const _handleDeleteAll = () => {
     confirm({
       title: "Are you sure delete All tasks?",

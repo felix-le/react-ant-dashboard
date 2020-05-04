@@ -7,10 +7,10 @@ import last from "lodash/last";
 import DefaultHeader from "./DefaultHeader";
 import DefaultFooter from "./DefaultFooter";
 import DefaultSideBar from "./DefaultSideBar";
-
+import { connect } from "react-redux";
 const { Content, Footer } = Layout;
 
-const DefaultLayout = () => {
+const DefaultLayout = ({ account }) => {
   const location = window.location.hash;
 
   const getNodeLabel = (node) => last(node.split("/"));
@@ -19,7 +19,6 @@ const DefaultLayout = () => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
   const breadcumbLabel = capitalizeFirstLetter(getNodeLabel(location));
-
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <DefaultSideBar />
@@ -69,6 +68,10 @@ const DefaultLayout = () => {
   );
 };
 
-// ReactDOM.render(<SiderDemo />, mountNode);
-
-export default DefaultLayout;
+const mapStateToProps = (state) => {
+  const { account } = state.appReducers;
+  return {
+    account,
+  };
+};
+export default connect(mapStateToProps, null)(DefaultLayout);

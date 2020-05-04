@@ -3,7 +3,7 @@ import { Form, Input, Button, Checkbox, Layout } from "antd";
 import { connect } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 
-import { fetchLocalUsers, checkUserInput } from "../../../redux/actions";
+import { fetchLocalUsers, activeUser } from "../../../redux/actions";
 const layout = {
   labelCol: {
     span: 8,
@@ -19,17 +19,30 @@ const tailLayout = {
   },
 };
 
-const Login = ({ fetchLocalUsers, checkUserInput, matchData, user, error }) => {
+const Login = ({ fetchLocalUsers, activeUser, user, error, users }) => {
+  const [errorMatchData, setErrorMatchData] = useState("");
   let history = useHistory();
-  //NEED TO HELP
-  const onFinish = (values) => {
-    checkUserInput(values);
-  };
-  //end NEED TO HELP
 
+  const onFinish = (values) => {
+    // checkUserInput(values);
+    console.log(values);
+    console.log(users);
+    // Should save this conditional function to reducer? and how?
+
+    if (users.length > 0) {
+      users.map((user) =>
+        user.username === values.username && user.password === values.password
+          ? (history.push("/"), setErrorMatchData(false), activeUser(user))
+          : (console.log("data not match"), setErrorMatchData(true))
+      );
+    } else {
+      console.log("nothing to show");
+    }
+    //end NEED TO HELP
+  };
   useEffect(() => {
     fetchLocalUsers();
-  }, []);
+  }, [fetchLocalUsers]);
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -79,7 +92,7 @@ const Login = ({ fetchLocalUsers, checkUserInput, matchData, user, error }) => {
         <Form.Item {...tailLayout} name="remember" valuePropName="checked">
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
-        {/* {errors.email && <p className="error">{errors.email}</p>} */}
+        {errorMatchData && <p className="error">not match data</p>}
         <Form.Item {...tailLayout}>
           <Button type="primary" htmlType="submit">
             Submit
@@ -101,18 +114,16 @@ const Login = ({ fetchLocalUsers, checkUserInput, matchData, user, error }) => {
 
 const mapStateToProps = (state) => {
   const {
-    appReducers: { users, matchData, user, error },
+    appReducers: { users, error },
   } = state;
   return {
     users,
-    matchData,
-    user,
     error,
   };
 };
 const mapDispatchToProps = {
   fetchLocalUsers,
-  checkUserInput,
+  activeUser,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

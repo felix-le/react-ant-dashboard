@@ -1,7 +1,58 @@
 import React from "react";
+import { connect } from "react-redux";
+import { Descriptions, Row, Col } from "antd";
 
-const Profile = () => {
-  return <div>this is profile page</div>;
+const Profile = ({ account }) => {
+  // const [dataUser, setDataUser] = useState({});
+  const {
+    username,
+    email,
+    password,
+    prefix,
+    phone,
+    website,
+  } = account[0].account;
+  const Description = () => {
+    return (
+      <>
+        <Descriptions title="User Info" layout="vertical" bordered>
+          <Descriptions.Item label="Contact" style={{}}>
+            {username}
+          </Descriptions.Item>
+          <Descriptions.Item label="Email">{email}</Descriptions.Item>
+          <Descriptions.Item label="Gender">{password}</Descriptions.Item>
+
+          <Descriptions.Item label="Prefix">{prefix}</Descriptions.Item>
+          <Descriptions.Item label="Phone">{phone}</Descriptions.Item>
+          <Descriptions.Item label="website">{website}</Descriptions.Item>
+        </Descriptions>
+      </>
+    );
+  };
+
+  return (
+    <div className="detaul_userdetaul_user">
+      <>
+        <Row>
+          <Col span={12} offset={6} className="ant-col-profile">
+            <p>this is avatar place</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={12} offset={6}>
+            <Description />
+          </Col>
+        </Row>
+      </>
+    </div>
+  );
 };
 
-export default Profile;
+const mapStateToProps = (state) => {
+  const { account } = state.appReducers;
+  return {
+    account,
+  };
+};
+
+export default connect(mapStateToProps, null)(Profile);

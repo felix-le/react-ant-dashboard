@@ -1,6 +1,6 @@
 import {
   SET_USER,
-  CHECK_USER,
+  USER_ACTIVE,
   FETCH_LOCAL_USER_START,
   FETCH_LOCAL_USER_SUCCESS,
   FETCH_LOCAL_USER_ERROR,
@@ -22,8 +22,8 @@ const initialState = {
       website: "",
     },
   ],
-  matchData: false,
   user: {},
+  account: {},
 };
 
 // let newObjectUser = {};
@@ -58,16 +58,10 @@ const reducers = (state = initialState, action) => {
     }
     // ----------------------------------------------------------------
     // BEGIN NEED TO HELP
-    case CHECK_USER: {
-      const { username, password } = action.payload.values; //gia tri trả về từ input
-      console.log("OUTPUT: reducers -> password", password);
-      console.log("OUTPUT: reducers -> username", username);
-      console.log("OUTPUT: reducers -> Users", state.users); //(gia tri tra ve tu localstorage)
+    case USER_ACTIVE: {
       return {
         ...state,
-        user: state.users.map(
-          (user) => user.username === username && user.password === password
-        ),
+        account: [action.payload],
       };
     }
     // END
