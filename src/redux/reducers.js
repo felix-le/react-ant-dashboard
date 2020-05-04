@@ -59,25 +59,16 @@ const reducers = (state = initialState, action) => {
     // ----------------------------------------------------------------
     // BEGIN NEED TO HELP
     case CHECK_USER: {
-      const { username, password } = action.payload.values;
+      const { username, password } = action.payload.values; //gia tri trả về từ input
       console.log("OUTPUT: reducers -> password", password);
       console.log("OUTPUT: reducers -> username", username);
-      // console.log(state.user);
-
-      // if (state.users.length > 0) {
-      //   state.users.map((userData) => {
-      //     if (
-      //       userData.username === username &&
-      //       userData.password === password
-      //     ) {
-      //       return {
-      //         ...state,
-      //         matchData: true,
-      //       };
-      //     }
-      //   });
-      // }
-      return {};
+      console.log("OUTPUT: reducers -> Users", state.users); //(gia tri tra ve tu localstorage)
+      return {
+        ...state,
+        user: state.users.map(
+          (user) => user.username === username && user.password === password
+        ),
+      };
     }
     // END
     default:

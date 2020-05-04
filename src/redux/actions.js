@@ -21,13 +21,12 @@ export const setUser = (email, username, password, phone, prefix, website) => ({
   },
 });
 // ----------------------------------------------------------------
-export const fetchLocalUser = () => async (dispatch) => {
+export const fetchLocalUsers = () => async (dispatch) => {
   dispatch({
     type: FETCH_LOCAL_USER_START,
   });
   try {
     const res = await api.getLocalUsers();
-    console.log("res", res);
     dispatch({
       type: FETCH_LOCAL_USER_SUCCESS,
       payload: { res },

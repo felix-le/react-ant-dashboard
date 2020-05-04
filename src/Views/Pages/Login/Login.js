@@ -3,7 +3,7 @@ import { Form, Input, Button, Checkbox, Layout } from "antd";
 import { connect } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 
-import { fetchLocalUser, checkUserInput } from "../../../redux/actions";
+import { fetchLocalUsers, checkUserInput } from "../../../redux/actions";
 const layout = {
   labelCol: {
     span: 8,
@@ -19,33 +19,21 @@ const tailLayout = {
   },
 };
 
-const Login = ({ fetchLocalUser, checkUserInput, matchData }) => {
+const Login = ({ fetchLocalUsers, checkUserInput, matchData, user, error }) => {
   let history = useHistory();
+  //NEED TO HELP
   const onFinish = (values) => {
     checkUserInput(values);
-    console.log(values);
-    // if (localUsers.length > 0) {
-    //   localUsers.map((user) => {
-    //     if (
-    //       user.username === values.username &&
-    //       user.password === values.password
-    //     ) {
-    //       setMatchData(true);
-    //       history.push("/");
-    //     } else {
-    //       setMatchData(false);
-    //     }
-    //   });
-    // }
   };
+  //end NEED TO HELP
+
+  useEffect(() => {
+    fetchLocalUsers();
+  }, []);
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-
-  useEffect(() => {
-    fetchLocalUser();
-  }, []);
 
   return (
     <Layout className="login-page-wrapper">
@@ -113,15 +101,17 @@ const Login = ({ fetchLocalUser, checkUserInput, matchData }) => {
 
 const mapStateToProps = (state) => {
   const {
-    appReducers: { users, matchData },
+    appReducers: { users, matchData, user, error },
   } = state;
   return {
     users,
     matchData,
+    user,
+    error,
   };
 };
 const mapDispatchToProps = {
-  fetchLocalUser,
+  fetchLocalUsers,
   checkUserInput,
 };
 
