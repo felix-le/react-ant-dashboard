@@ -23,7 +23,8 @@ function App() {
           <Route exact path="/login" name="Login Page" component={Login} />
           <Route exact path="/register-page" name="Register Page" component={Register} />
           <Route exact path="/forgot-password" name="Forgot pass Page" component={ForgotPassword} />
-          <PrivateRoute path="/" name="Home" component={DefaultLayout} />
+          <Route path="/" name="Home" component={DefaultLayout} />
+          {/* <PrivateRoute path="/" name="Home" component={DefaultLayout} /> */}
         </Switch>
       </React.Suspense>
     </HashRouter>
