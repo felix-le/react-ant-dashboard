@@ -8,10 +8,10 @@ import Register from "./Views/Pages/Register";
 
 import { isLogin } from "./utils";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  console.log(isLogin());
-  return <Route {...rest} render={(props) => (isLogin() ? <Component {...props} /> : <Redirect to="/login" />)} />;
-};
+// const PrivateRoute = ({ component: Component, ...rest }) => {
+//   console.log(isLogin());
+//   return <Route {...rest} render={(props) => (isLogin() ? <Component {...props} /> : <Redirect to="/login" />)} />;
+// };
 
 function App() {
   const loading = () => <div className="ant-divider-with-text-center">Loading....</div>;
